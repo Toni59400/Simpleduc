@@ -16,7 +16,7 @@ if (isset($_POST['mdp_lost'])){
                         </head>
                         <body>
                             <p>Cliquez sur ce lien pour recuperer le mdp</p>
-                            <a href="pass_lost.php?cli='.$email2.'">Cliquez ici ! </a>
+                            <a href="http://localhost:8080/pass_lost.php?cli='.$email2.'">Cliquez ici ! </a>
                     </html>
                     ';
             $email->envoyerMailer($email2, 'Recuperation MDP', $message, '');

@@ -58,6 +58,7 @@ require_once './classes/class_mail.php';
             $mdp = $_POST['mdp_connexion'];
             $sql_cli = $db->query("SELECT * from user where email = '$email'"); 
             $data_cli = $sql_cli->fetchAll();
+            var_dump(password_verify($mdp, $data_cli[0]['mdp']));
             if (password_verify($mdp, $data_cli[0]['mdp'])==1){
                 if ($data_cli[0]['valider'] == "true"){
                 header("Location: accueil.php");
