@@ -45,7 +45,7 @@ require_once './classes/class_mail.php';
                         </head>
                         <body>
                             <p>Veuillez confirmez votre compte en cliquant sur ce lien. </p>
-                            <a href="https://s4-8016.nuage-peda.fr/s1/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici ! </a>
+                            <a href="verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici ! </a>
                     </html>
                     ';
             $email->envoyerMailer($email2, 'Verification Compte', $message, '');
@@ -60,7 +60,7 @@ require_once './classes/class_mail.php';
             $data_cli = $sql_cli->fetchAll();
             if (password_verify($mdp, $data_cli[0]['mdp'])==1){
                 if ($data_cli[0]['valider'] == "true"){
-                header("Location: https://s4-8016.nuage-peda.fr/s1/accueil.php");
+                header("Location: accueil.php");
                 } else {
                     echo "Compte non verifie";
                 }
@@ -92,8 +92,8 @@ if (isset($_GET['connexion'])){
                 <input type="password" name="mdp_connexion">
                 <input type="submit" name="connexion" value="Connexion">
             </form>
-        <a href="https://s4-8016.nuage-peda.fr/s1/pass_lost.php">Mot de passe oublié ?</a>
-        <p>Vous n'etes pas inscrit ? <a href="https://s4-8016.nuage-peda.fr/s1/index.php">Inscrivez-vous</a></p>
+        <a href="pass_lost.php">Mot de passe oublié ?</a>
+        <p>Vous n'etes pas inscrit ? <a href="index.php">Inscrivez-vous</a></p>
     </div>
 
 <?php 
@@ -109,7 +109,7 @@ if (isset($_GET['connexion'])){
                 <input type="password" name="mdp">
                 <input type="submit" name="inscription" value="inscription">
             </form>
-        <p>Deja inscrit ? <a href="https://s4-8016.nuage-peda.fr/s1/index.php?connexion=1">Connectez-vous</a></p>
+        <p>Deja inscrit ? <a href="index.php?connexion=1">Connectez-vous</a></p>
     </div>
 
 

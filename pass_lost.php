@@ -16,7 +16,7 @@ if (isset($_POST['mdp_lost'])){
                         </head>
                         <body>
                             <p>Cliquez sur ce lien pour recuperer le mdp</p>
-                            <a href="https://s4-8016.nuage-peda.fr/s1/pass_lost.php?cli='.$email2.'">Cliquez ici ! </a>
+                            <a href="pass_lost.php?cli='.$email2.'">Cliquez ici ! </a>
                     </html>
                     ';
             $email->envoyerMailer($email2, 'Recuperation MDP', $message, '');
@@ -41,7 +41,7 @@ if (isset($_POST['mdp_lost'])){
                 <input type="pass" name="pass_confirm">
                 <input type="submit" name="pass_modif" value="Modifier le mdp">
             </form>
-        <a href="https://s4-8016.nuage-peda.fr/s1/index.php">Retour</a>
+        <a href="index.php">Retour</a>
     </div>
 
     </body>
@@ -65,7 +65,7 @@ if (isset($_POST['mdp_lost'])){
                 <input type="mail" name="email_connexion">
                 <input type="submit" name="mdp_lost" value="Envoyer mail recup">
             </form>
-        <a href="https://s4-8016.nuage-peda.fr/s1/index.php">Retour</a>
+        <a href="index.php">Retour</a>
     </div>
 
     </body>
