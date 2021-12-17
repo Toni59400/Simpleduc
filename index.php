@@ -4,7 +4,7 @@ include("./config/dbconnection.php");
 require_once 'lib/vendor/autoload.php';
 require_once './classes/class_mail.php';
 
-    session_start();
+
     $regex = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/";
     $valid = "true";
     if (isset($_POST["inscription"])){
@@ -61,7 +61,7 @@ require_once './classes/class_mail.php';
             var_dump(password_verify($mdp, $data_cli[0]['mdp']));
             if (password_verify($mdp, $data_cli[0]['mdp'])==1){
                 if ($data_cli[0]['valider'] == "true"){
-                header("Location: ./accueil/accueil.php");
+                header("Location: accueil.php");
                 } else {
                     echo "Compte non verifie";
                 }
@@ -70,48 +70,48 @@ require_once './classes/class_mail.php';
             }
         }
     }
+
+include('./inc/layout.php');
 ?>  
-<!DOCTYPE HTML>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="style.css"/>
-        <title>Inscription</title>
-    </head>
-    <body>
+            <title>Connexion</title>
+        </head>
+        <body>
 
 <?php 
 if (isset($_GET['connexion'])){
 ?>
-    <div class="flex_center">
-        <h1>Connexion</h1>
-            <form method="post" class="inscription">
-                <label for="mail">Login :</label>
-                <input type="mail" name="email_connexion">
-                <label for="password">Mdp :</label>
-                <input type="password" name="mdp_connexion">
-                <input type="submit" name="connexion" value="Connexion">
-            </form>
-        <a href="pass_lost.php">Mot de passe oublié ?</a>
-        <p>Vous n'etes pas inscrit ? <a href="index.php">Inscrivez-vous</a></p>
-    </div>
+        <div class="flex_center">
+            <h1>Connexion</h1>
+                <form method="post" class="inscription">
+                    <label for="mail">Login :</label>
+                    <input type="mail" name="email_connexion">
+                    <label for="password">Mdp :</label>
+                    <input type="password" name="mdp_connexion">
+                    <input type="submit" name="connexion" value="Connexion">
+                </form>
+            <a href="pass_lost.php">Mot de passe oublié ?</a>
+            <p>Vous n'etes pas inscrit ? <a href="index.php">Inscrivez-vous</a></p>
+        </div>
 
 <?php 
 } else {
+include("./inc/layout.php");
 ?>
+        <title>Inscription</title>
+    </head>
+    <body>
 
-    <div class="flex_center">
-        <h1>Inscription</h1>
-            <form method="post" class="inscription">
-                <label for="mail">Login :</label>
-                <input type="mail" name="email">
-                <label for="password">Mdp :</label>
-                <input type="password" name="mdp">
-                <input type="submit" name="inscription" value="inscription">
-            </form>
-        <p>Deja inscrit ? <a href="index.php?connexion=1">Connectez-vous</a></p>
-    </div>
+        <div class="flex_center">
+            <h1>Inscription</h1>
+                <form method="post" class="inscription">
+                    <label for="mail">Login :</label>
+                    <input type="mail" name="email">
+                    <label for="password">Mdp :</label>
+                    <input type="password" name="mdp">
+                    <input type="submit" name="inscription" value="inscription">
+                </form>
+            <p>Deja inscrit ? <a href="index.php?connexion=1">Connectez-vous</a></p>
+        </div>
 
 
 <?php 

@@ -1,6 +1,12 @@
 <?php
     include("./inc/layout.php");
 ?>
+        <title>Accueil | Simpléduc</title>
+    </head>
+    <body>
+<?php 
+    include("./inc/header.php");
+?>
 
 <div class="header_bar">
     <nav class="nav">
@@ -12,3 +18,8 @@
 </div>
 
 <h1>Accueil seuleument pour ceux authentifier !</h1>
+
+
+<?php 
+    include("./inc/layout_bottom")
+?> 
