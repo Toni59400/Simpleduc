@@ -10,3 +10,26 @@
     position: relative;
     left: 400px;
 }
+
+.header_index{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.info_right{
+    display: flex;
+}
+
+li{
+    list-style-type : none;
+}
