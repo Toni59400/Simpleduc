@@ -1,4 +1,6 @@
 <?php
+
+
 include("./config/config.php");
 include("./config/dbconnection.php");
 require_once 'lib/vendor/autoload.php';
@@ -34,7 +36,7 @@ require_once './classes/class_mail.php';
             $code = uniqid();
             var_dump($code);
             $valider = "false";
-            $sql = "INSERT into user(email, mdp, date_inscription, date_derniere_connexion, valider, codeVerif) values('$email2', '$pass', NOW(), NOW(), '$valider','$code')";
+            $sql = "INSERT into user(email, mdp, date_inscription, date_derniere_connexion, valider, codeVerif, nom, prenom, fonction) values('$email2', '$pass', NOW(), NOW(), '$valider','$code', Null, null, 1)";
             $req = $db->prepare($sql);
             $req->execute();
             $email = new Mail();
@@ -45,7 +47,7 @@ require_once './classes/class_mail.php';
                         </head>
                         <body>
                             <p>Veuillez confirmez votre compte en cliquant sur ce lien. </p>
-                            <a href="verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici ! </a>
+                            <a href="http://localhost:8080/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici !</a>
                     </html>
                     ';
             $email->envoyerMailer($email2, 'Verification Compte', $message, '');
@@ -61,7 +63,9 @@ require_once './classes/class_mail.php';
             var_dump(password_verify($mdp, $data_cli[0]['mdp']));
             if (password_verify($mdp, $data_cli[0]['mdp'])==1){
                 if ($data_cli[0]['valider'] == "true"){
-                header("Location: accueil.php");
+                    var_dump($_SESSION);
+                    $_SESSION['valider'] = "true";
+                    header("Location: accueil.php");
                 } else {
                     echo "Compte non verifie";
                 }
@@ -73,13 +77,13 @@ require_once './classes/class_mail.php';
 
 include('./inc/layout.php');
 ?>  
-            <title>Connexion</title>
-        </head>
-        <body>
 
 <?php 
 if (isset($_GET['connexion'])){
 ?>
+        <title>Connexion</title>
+    </head>
+    <body>
         <div class="flex_center">
             <h1>Connexion</h1>
                 <form method="post" class="inscription">
@@ -94,8 +98,8 @@ if (isset($_GET['connexion'])){
         </div>
 
 <?php 
+include("./inc/layout_bottom.php");
 } else {
-include("./inc/layout.php");
 ?>
         <title>Inscription</title>
     </head>
@@ -115,6 +119,7 @@ include("./inc/layout.php");
 
 
 <?php 
+include("./inc/layout_bottom.php");
 }
 ?>
 
