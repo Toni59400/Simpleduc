@@ -1,10 +1,9 @@
 <?php
-
-
 include("./config/config.php");
 include("./config/dbconnection.php");
 require_once 'lib/vendor/autoload.php';
 require_once './classes/class_mail.php';
+include('./inc/layout.php');
 
 
     $regex = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/";
@@ -74,8 +73,6 @@ require_once './classes/class_mail.php';
             }
         }
     }
-
-include('./inc/layout.php');
 ?>  
 
 <?php 
