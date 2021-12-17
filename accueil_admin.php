@@ -259,7 +259,7 @@ if (isset($_GET['equipe'])){
             </div>
             <div>
                 <label for="chef">Nom du chef de l'équipe</label>
-                <input type="chef" id="chef" name="chef">
+                <input type="text" id="chef" name="chef">
             </div>
         </form>
         <input type="submit">
@@ -286,7 +286,30 @@ if (isset($_GET['equipe'])){
 }
 if (isset($_GET['personnel'])){
 ?>
+        <form action="">
+            <div>
+                <label for="nom_personnel">Nom</label>
+                <input type="text" id="nom_personnel" name="nom_personnel">
+            </div>
+            <div>
+                <label for="prenom_personnel">Prénom</label>
+                <input type="text" id="prenom_personnel" name="prenom_personnel">
+            </div>
+            <div>
+                <label for="email_personnel">Email</label>
+                <input type="text" id="email_personnel" name="email_personnel">
+            </div>
+            <div>
+                <select name="fonction" id="fonction">
+                <option value="">Choississez une fonction</option>
+                </select>
+            </div>
+            <div>
+                <label for="admin">Admin</label>
+                <input type="checkbox" id="admin" name="admin">
+            </div>
 
+        </form>
         <table>
             <thead>
                 <tr>
