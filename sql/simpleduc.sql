@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 17 déc. 2021 à 10:36
+-- Généré le : ven. 17 déc. 2021 à 13:37
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 8.0.11
 
@@ -175,17 +175,17 @@ CREATE TABLE `user` (
   `codeVerif` varchar(255) NOT NULL,
   `nom` varchar(30) DEFAULT NULL,
   `prenom` varchar(30) DEFAULT NULL,
-  `fonction` int(11) DEFAULT NULL
+  `fonction` int(11) DEFAULT NULL,
+  `admin` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `mdp`, `date_inscription`, `date_derniere_connexion`, `valider`, `codeVerif`, `nom`, `prenom`, `fonction`) VALUES
-(27, 'tonipira.tp@gmail.com', '$2y$10$jwOyM4HKfJDDhAo/g7x1iO6OtbKscaI2FXtdv2LwJQiHiWDVisH.m', '2021-12-02 14:52:55', '2021-12-02 14:52:55', 'true', '61a8cfb711155', 'Pira', 'Toni', 1),
-(28, 'topira@gmail.com', '$2y$10$kXyFoQS7DPFozn11zB8A3eu7tYs5VoFZsAbwEybJsTlAdM4CPrRSK', '2021-12-17 09:34:13', '2021-12-17 09:34:13', 'false', '61bc4b85d8579', NULL, NULL, NULL),
-(29, 'fallon59400@gmail.com', '$2y$10$PXecyJ865auI56ApBtZr2utA4SZKcmPu4NQACmA5sbZIU57bWSzqC', '2021-12-17 10:03:30', '2021-12-17 10:03:30', 'true', '61bc52623a38e', NULL, NULL, 1);
+INSERT INTO `user` (`id`, `email`, `mdp`, `date_inscription`, `date_derniere_connexion`, `valider`, `codeVerif`, `nom`, `prenom`, `fonction`, `admin`) VALUES
+(27, 'tonipira.tp@gmail.com', '$2y$10$jwOyM4HKfJDDhAo/g7x1iO6OtbKscaI2FXtdv2LwJQiHiWDVisH.m', '2021-12-02 14:52:55', '2021-12-02 14:52:55', 'true', '61a8cfb711155', 'Pira', 'Toni', 1, 'false'),
+(29, 'fallon59400@gmail.com', '$2y$10$PXecyJ865auI56ApBtZr2utA4SZKcmPu4NQACmA5sbZIU57bWSzqC', '2021-12-17 10:03:30', '2021-12-17 10:03:30', 'true', '61bc52623a38e', NULL, NULL, 1, 'true');
 
 --
 -- Index pour les tables déchargées
