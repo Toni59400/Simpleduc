@@ -59,12 +59,18 @@ include('./inc/layout.php');
             $mdp = $_POST['mdp_connexion'];
             $sql_cli = $db->query("SELECT * from user where email = '$email'"); 
             $data_cli = $sql_cli->fetchAll();
-            var_dump(password_verify($mdp, $data_cli[0]['mdp']));
             if (password_verify($mdp, $data_cli[0]['mdp'])==1){
                 if ($data_cli[0]['valider'] == "true"){
-                    var_dump($_SESSION);
-                    $_SESSION['valider'] = "true";
-                    header("Location: accueil.php");
+                    if ($data_cli[0]['admin'] == "true"){
+                        echo $data_cli[0]["admin"];
+                        $_SESSION['admin'] = "oui";
+                        header("Location: accueil_admin.php");
+                    }else {
+                        $_SESSION["admin"] = "non";
+                        $_SESSION['valider'] = "true";
+                        $_SESSION['id'] = $data_cli[0]['id'];
+                        header("Location: accueil.php");
+                    }
                 } else {
                     echo "Compte non verifie";
                 }
@@ -74,24 +80,33 @@ include('./inc/layout.php');
         }
     }
 ?>  
-
+        <div class="header_index">
+            <div>
+                Bienvenue
+            </div>
+            <div>
+                <img src="./logo.png" alt="Logo_Simpleduc" class="logo"/>
+            </div>
+        </div>
 <?php 
 if (isset($_GET['connexion'])){
 ?>
         <title>Connexion</title>
     </head>
     <body>
-        <div class="flex_center">
-            <h1>Connexion</h1>
-                <form method="post" class="inscription">
-                    <label for="mail">Login :</label>
-                    <input type="mail" name="email_connexion">
-                    <label for="password">Mdp :</label>
-                    <input type="password" name="mdp_connexion">
-                    <input type="submit" name="connexion" value="Connexion">
-                </form>
-            <a href="pass_lost.php">Mot de passe oublié ?</a>
-            <p>Vous n'etes pas inscrit ? <a href="index.php">Inscrivez-vous</a></p>
+        <div class="container_all">
+            <div class="flex_center">
+                <h1>Connexion</h1>
+                    <form method="post" class="inscription">
+                        <label for="mail">Login :</label>
+                        <input type="mail" name="email_connexion">
+                        <label for="password">Mdp :</label>
+                        <input type="password" name="mdp_connexion">
+                        <input type="submit" name="connexion" value="Connexion">
+                    </form>
+                <a href="pass_lost.php">Mot de passe oublié ?</a>
+                <p>Vous n'etes pas inscrit ? <a href="index.php">Inscrivez-vous</a></p>
+            </div>
         </div>
 
 <?php 
