@@ -83,7 +83,7 @@ table tbody td {
 font-size: 13px;
 }
 table tr:nth-child(even) {
-background: #CC3BFC;
+background: #eeeeee;
 }
 table thead {
 background: #878787;

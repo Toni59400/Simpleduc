@@ -33,27 +33,7 @@
 <?php
 if (isset($_GET['contrat'])){
 ?>
-        <form action="" method="post">
-            <div>
-                <label for="delai">délai :</label>
-                <input type="text" id="delai" name="delai">
-            </div>
-            <div>
-                <label for="date_signature">date de la signature:</label>
-                <input type="datetime" id="date_signature" name="date_signature">
-            </div>
-            <div>
-                <label for="cout">Coût :</label>
-                <input type="text" id="cout" name="cout">
-            </div>
-            <div>
-                <label for="entreprise">Entreprise :</label>
-                <select name="entreprise" id="entreprise">
-                    <option value="">Choississez une entreprise</option>
-                </select>
-            </div>
-        </form>
-        <input type="submit">
+        
 
         <table>
             <thead>
@@ -75,26 +55,42 @@ if (isset($_GET['contrat'])){
                 </tr>
             </tbody>
         </table>
+
+        <form method="post">
+            <input type="submit" value="Ajouter" name="ajouter_contrat">
+        </form>
+        <?php
+            if(isset($_POST['ajouter_contrat'])){
+        ?>
+        <form method="post">
+            <div>
+                <label for="delai">délai :</label>
+                <input type="text" id="delai" name="delai">
+            </div>
+            <div>
+                <label for="date_signature">date de la signature:</label>
+                <input type="datetime" id="date_signature" name="date_signature">
+            </div>
+            <div>
+                <label for="cout">Coût :</label>
+                <input type="text" id="cout" name="cout">
+            </div>
+            <div>
+                <label for="entreprise">Entreprise :</label>
+                <select name="entreprise" id="entreprise">
+                    <option value="">Choississez une entreprise</option>
+                </select>
+            </div>
+        </form>
+        <input type="submit">
+                <?php
+            }
+        ?>
 <?php
 }
 if (isset($_GET['entreprise'])){
 ?>
-        <form action="" method="post">
-            <div>
-                <label for="nom">Nom de l'entreprise:</label>
-                <input type="text" id="nom" name="nom">
-            </div>
-            <div>
-                <label for="coordonnees">Email de l'entreprise:</label>
-                <input type="email" id="coordonnees" name="coordonnees">
-            </div>
-            <div>
-                <label for="contact">Email du contact de l'entreprise:</label>
-                <input type="email" id="contact" name="contact">
-            </div>
-        </form>
-        <input type="submit">
-
+        
         <table>
             <thead>
                 <tr>
@@ -114,23 +110,35 @@ if (isset($_GET['entreprise'])){
             </tbody>
         </table>
 
+        <form method="post">
+            <input type="submit" value="Ajouter" name="ajouter_contrat">
+        </form>
+        <?php
+            if(isset($_POST['ajouter_contrat'])){
+        ?>
+        <form action="" method="post">
+            <div>
+                <label for="nom">Nom de l'entreprise:</label>
+                <input type="text" id="nom" name="nom">
+            </div>
+            <div>
+                <label for="coordonnees">Email de l'entreprise:</label>
+                <input type="email" id="coordonnees" name="coordonnees">
+            </div>
+            <div>
+                <label for="contact">Email du contact de l'entreprise:</label>
+                <input type="email" id="contact" name="contact">
+            </div>
+        </form>
+        <input type="submit">
+        <?php
+            }
+        ?>
+
 <?php
 }
 if (isset($_GET['projet'])){
 ?>
-        <form action="" method="post">
-            <div>
-                <label for="contrat">contrat</label>
-                <select name="contrat" id="contrat">
-                    <option value="">Choississez un contrat</option>
-                </select>
-            </div>
-            <input type="submit" value="Selectionner">
-            <div>
-                <textarea name="cahier_des_charges" placeholder="cahier des charges" id="cahier_des_charges" cols="30" rows="10"></textarea>
-            </div>
-        </form>
-        <input type="submit">
 
         <table>
             <thead>
@@ -152,17 +160,33 @@ if (isset($_GET['projet'])){
                 </tr>
             </tbody>
         </table>
+
+        <form method="post">
+            <input type="submit" value="Ajouter" name="ajouter_contrat">
+        </form>
+        <?php
+            if(isset($_POST['ajouter_contrat'])){
+        ?>
+        <form action="" method="post">
+            <div>
+                <label for="contrat">contrat</label>
+                <select name="contrat" id="contrat">
+                    <option value="">Choississez un contrat</option>
+                </select>
+            </div>
+            <input type="submit" value="Selectionner">
+            <div>
+                <textarea name="cahier_des_charges" placeholder="cahier des charges" id="cahier_des_charges" cols="30" rows="10"></textarea>
+            </div>
+        </form>
+        <input type="submit">
+        <?php
+            }
+        ?>
 <?php
 }
 if (isset($_GET['competence'])){
 ?>
-        <form action="" method="post">
-            <div>
-                <label for="competence">Competence</label>
-                <input type="competence" id="competence" name="competence">
-            </div>
-        </form>
-        <input type="submit">
 
         <table>
             <thead>
@@ -178,17 +202,27 @@ if (isset($_GET['competence'])){
                 </tr>
             </tbody>
         </table>
+
+        <form method="post">
+            <input type="submit" value="Ajouter" name="ajouter_contrat">
+        </form>
+        <?php
+            if(isset($_POST['ajouter_contrat'])){
+        ?>
+        <form action="" method="post">
+            <div>
+                <label for="competence">Competence</label>
+                <input type="competence" id="competence" name="competence">
+            </div>
+        </form>
+        <input type="submit">
+        <?php
+            }
+        ?>
 <?php
 }
 if (isset($_GET['materiel'])){
 ?>
-        <form action="" method="post">
-            <div>
-                <label for="materiel">Materiel</label>
-                <input type="materiel" id="materiel" name="materiel">
-            </div>
-        </form>
-        <input type="submit">
 
         <table>
             <thead>
@@ -204,28 +238,27 @@ if (isset($_GET['materiel'])){
                 </tr>
             </tbody>
         </table>
+
+        <form method="post">
+            <input type="submit" value="Ajouter" name="ajouter_contrat">
+        </form>
+        <?php
+            if(isset($_POST['ajouter_contrat'])){
+        ?>
+        <form action="" method="post">
+            <div>
+                <label for="materiel">Materiel</label>
+                <input type="materiel" id="materiel" name="materiel">
+            </div>
+        </form>
+        <input type="submit">
+        <?php
+            }
+        ?>
 <?php
 }
 if (isset($_GET['module'])){
 ?>
-        <form action="" method="post">
-            <div>
-                <label for="nom">Nom du module</label>
-                <input type="nom" id="nom" name="nom">
-            </div>
-            <div>
-                <select name="equipe" id="equipe">
-                    <option value="">Choississez une équipe</option>
-                </select>
-            </div>
-            <div>
-                <select name="projet" id="projet">
-                    <option value="">Choississez un projet</option>
-                </select>
-            </div>
-        </form>
-        <input type="submit">
-
         <table>
             <thead>
                 <tr>
@@ -244,25 +277,36 @@ if (isset($_GET['module'])){
                 </tr>
             </tbody>
         </table>
+        <form method="post">
+            <input type="submit" value="Ajouter" name="ajouter_contrat">
+        </form>
+        <?php
+            if(isset($_POST['ajouter_contrat'])){
+        ?>
+        <form action="" method="post">
+            <div>
+                <label for="nom">Nom du module</label>
+                <input type="nom" id="nom" name="nom">
+            </div>
+            <div>
+                <select name="equipe" id="equipe">
+                    <option value="">Choississez une équipe</option>
+                </select>
+            </div>
+            <div>
+                <select name="projet" id="projet">
+                    <option value="">Choississez un projet</option>
+                </select>
+            </div>
+        </form>
+        <input type="submit">
+        <?php
+            }
+        ?>
 <?php
 }
 if (isset($_GET['equipe'])){
 ?>
-        <form action="" method="post">
-            <div>
-                <label for="nom">Nom de l'équipe</label>
-                <input type="nom" id="nom" name="nom">
-            </div>
-            <div>
-                <label for="dev">Développeur</label>
-                <input type="text">
-            </div>
-            <div>
-                <label for="chef">Nom du chef de l'équipe</label>
-                <input type="text" id="chef" name="chef">
-            </div>
-        </form>
-        <input type="submit">
 
         <table>
             <thead>
@@ -282,34 +326,35 @@ if (isset($_GET['equipe'])){
                 </tr>
             </tbody>
         </table>
+
+        <form method="post">
+            <input type="submit" value="Ajouter" name="ajouter_contrat">
+        </form>
+        <?php
+            if(isset($_POST['ajouter_contrat'])){
+        ?>
+        <form action="" method="post">
+            <div>
+                <label for="nom">Nom de l'équipe</label>
+                <input type="nom" id="nom" name="nom">
+            </div>
+            <div>
+                <label for="dev">Développeur</label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="chef">Nom du chef de l'équipe</label>
+                <input type="text" id="chef" name="chef">
+            </div>
+        </form>
+        <input type="submit">
+        <?php
+            }
+        ?>
 <?php
 }
 if (isset($_GET['personnel'])){
 ?>
-        <form action="">
-            <div>
-                <label for="nom_personnel">Nom</label>
-                <input type="text" id="nom_personnel" name="nom_personnel">
-            </div>
-            <div>
-                <label for="prenom_personnel">Prénom</label>
-                <input type="text" id="prenom_personnel" name="prenom_personnel">
-            </div>
-            <div>
-                <label for="email_personnel">Email</label>
-                <input type="text" id="email_personnel" name="email_personnel">
-            </div>
-            <div>
-                <select name="fonction" id="fonction">
-                <option value="">Choississez une fonction</option>
-                </select>
-            </div>
-            <div>
-                <label for="admin">Admin</label>
-                <input type="checkbox" id="admin" name="admin">
-            </div>
-
-        </form>
         <table>
             <thead>
                 <tr>
@@ -336,6 +381,40 @@ if (isset($_GET['personnel'])){
                 </tr>
             </tbody>
         </table>
+
+        <form method="post">
+            <input type="submit" value="Ajouter" name="ajouter_contrat">
+        </form>
+        <?php
+            if(isset($_POST['ajouter_contrat'])){
+        ?>
+        <form action="">
+            <div>
+                <label for="nom_personnel">Nom</label>
+                <input type="text" id="nom_personnel" name="nom_personnel">
+            </div>
+            <div>
+                <label for="prenom_personnel">Prénom</label>
+                <input type="text" id="prenom_personnel" name="prenom_personnel">
+            </div>
+            <div>
+                <label for="email_personnel">Email</label>
+                <input type="text" id="email_personnel" name="email_personnel">
+            </div>
+            <div>
+                <select name="fonction" id="fonction">
+                <option value="">Choississez une fonction</option>
+                </select>
+            </div>
+            <div>
+                <label for="admin">Admin</label>
+                <input type="checkbox" id="admin" name="admin">
+            </div>
+        </form>
+        <input type="submit">
+        <?php
+            }
+        ?>
 
 <?php
 }
