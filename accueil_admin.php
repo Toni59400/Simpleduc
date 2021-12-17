@@ -185,16 +185,6 @@ if (isset($_GET['projet'])){
 }
 if (isset($_GET['competence'])){
 ?>
-<<<<<<< HEAD
-=======
-        <form action="" method="post">
-            <div>
-                <label for="competence">Competence</label>
-                <input type="competence" id="competence" name="competence">
-            </div>
-        </form>
-        <input type="submit" value="Creer la competence">
->>>>>>> 402a93b24c6771f675060602216a79c6300eb461
 
         <table>
             <thead>
