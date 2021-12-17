@@ -49,6 +49,7 @@
 }
 
 .two_div_in_screen{
+    margin-top: 10px;
     box-sizing: border-box;
     width: 49%;
     margin-left: 0.5%;

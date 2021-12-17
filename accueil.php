@@ -37,13 +37,18 @@
                     <p>Nom contrat -> Nom projet -> Nom module</p>
                     <table>
                         <thead>
-                            <th>Prenom</th>
-                            <th>Competences</th>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Competences</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <td>Nom_ex</td>
-                            <td>Prenom_ex</td>
-                            <td>Competences_ex</td>
+                            <tr>
+                                <td>Nom_ex</td>
+                                <td>Prenom_ex</td>
+                                <td>Competences_ex</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -51,7 +56,46 @@
 
         </div>
         <div class="two_div_in_screen">
-
+            <div>
+                <p class="title_table">Mon profil</p>
+                <div class="body_table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mes compétences</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Exemple_competences</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <p class="title_table">Ajouter des compétences</p>
+                    <div class="body_table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nom de la competences</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nom_ex</td>
+                                    <td>Ajouter - Supprimer</td>
+                                </tr>
+                                <tr>
+                                    <td>Nom_ex</th>
+                                    <td>Ajouter - Supprimer</td>
+                                </tr>              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 <?php 
 }
