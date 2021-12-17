@@ -8,8 +8,6 @@
         <div class="header_index">
             <div class="info_right">
                 <div class="header_right">
-                    <a href="projets">Projets</a>
-                    <a href="test">Test</a>
                     <a href="../unconnexion.php">Deconnexion</a>
                 </div>
             </div>
@@ -17,17 +15,17 @@
                 <a href="../accueil_admin.php"><img class="logo" src="./logo.png" alt="Logo_Simpleduc"/></a>
             </div>
         </div>
-
-        <h1>Accueil seuleument pour les admins !</h1>
         <div>
-            <a href="accueil_admin.php?contrat=1">Contrat</a>
-            <a href="accueil_admin.php?entreprise=1">Ajouter une entreprise</a>
-            <a href="accueil_admin.php?projet=1">Projet</a>
-            <a href="accueil_admin.php?competence=1">Competence</a>
-            <a href="accueil_admin.php?materiel=1">Materiel</a>
-            <a href="accueil_admin.php?module=1">Module</a>
-            <a href="accueil_admin.php?equipe=1">Équipe</a>
-            <a href="accueil_admin.php?personnel=1">Personnel</a>
+            <nav class="nav_admin">
+                <div><a href="accueil_admin.php?contrat=1">Contrat</a></div>
+                <div><a href="accueil_admin.php?entreprise=1">Ajouter une entreprise</a></div>
+                <div><a href="accueil_admin.php?projet=1">Projet</a></div>
+                <div><a href="accueil_admin.php?competence=1">Competence</a></div>
+                <div><a href="accueil_admin.php?materiel=1">Materiel</a></div>
+                <div><a href="accueil_admin.php?module=1">Module</a></div>
+                <div><a href="accueil_admin.php?equipe=1">Équipe</a></div>
+                <div><a href="accueil_admin.php?personnel=1">Personnel</a></div>
+            </nav>
         </div>
 
 <?php
@@ -162,7 +160,7 @@ if (isset($_GET['competence'])){
                 <input type="competence" id="competence" name="competence">
             </div>
         </form>
-        <input type="submit">
+        <input type="submit" value="Creer la competence">
 
         <table>
             <thead>

@@ -83,7 +83,7 @@ table tbody td {
 font-size: 13px;
 }
 table tr:nth-child(even) {
-background: #CC3BFC;
+background: #eeeeee;
 }
 table thead {
 background: #878787;
@@ -92,4 +92,24 @@ table thead th {
 font-weight: normal;
 color: #FFFFFF;
 text-align: center;
+}
+
+.nav_admin{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(240, 240, 240);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-top: solid 1px black;
+}
+
+.nav_admin div a{
+    border: rgb(170, 166, 166) solid 1px;
+    margin-right: 25px;
+    padding: 5px;
+    background-color: rgb(235, 235, 235);
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    border-radius: 5px;
 }
