@@ -11,7 +11,7 @@ if (isset($_GET['code']) and isset($_GET['cli'])){
     if ($data[0]['codeVerif'] == $code){
         $sql2 = $db->prepare("UPDATE user set valider = 'true' where email = '$email'"); 
         $sql2->execute();
-        header("Location: accueil.php");
+        header("Location: ./accueil/accueil.php");
     }
 }
 ?>

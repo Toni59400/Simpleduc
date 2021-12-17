@@ -6,7 +6,7 @@
             </div>
         </div>
         <div>
-            <h1 class="arial">Hotel Neptune Arras</h1>
+            <h1 class="arial">Simpléduc</h1>
         </div>
         <div class="logo">
             <a href="./index.php"><img src="https://www.hotel-neptune.fr/images/logos/logo-hotel.png" alt="Logo_Hotel"/></a>
