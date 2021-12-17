@@ -8,6 +8,8 @@
         <div class="header_index">
             <div class="info_right">
                 <div class="header_right">
+                    <a href="projets">Projets</a>
+                    <a href="test">Test</a>
                     <a href="../unconnexion.php">Deconnexion</a>
                 </div>
             </div>
@@ -15,24 +17,22 @@
                 <a href="../accueil_admin.php"><img class="logo" src="./logo.png" alt="Logo_Simpleduc"/></a>
             </div>
         </div>
+
+        <h1>Accueil seuleument pour les admins !</h1>
         <div>
-            <nav class="nav_admin">
-                <div><a href="accueil_admin.php?contrat=1">Contrat</a></div>
-                <div><a href="accueil_admin.php?entreprise=1">Ajouter une entreprise</a></div>
-                <div><a href="accueil_admin.php?projet=1">Projet</a></div>
-                <div><a href="accueil_admin.php?competence=1">Competence</a></div>
-                <div><a href="accueil_admin.php?materiel=1">Materiel</a></div>
-                <div><a href="accueil_admin.php?module=1">Module</a></div>
-                <div><a href="accueil_admin.php?equipe=1">Équipe</a></div>
-                <div><a href="accueil_admin.php?personnel=1">Personnel</a></div>
-            </nav>
+            <a href="accueil_admin.php?contrat=1">Contrat</a>
+            <a href="accueil_admin.php?entreprise=1">Ajouter une entreprise</a>
+            <a href="accueil_admin.php?projet=1">Projet</a>
+            <a href="accueil_admin.php?competence=1">Competence</a>
+            <a href="accueil_admin.php?materiel=1">Materiel</a>
+            <a href="accueil_admin.php?module=1">Module</a>
+            <a href="accueil_admin.php?equipe=1">Équipe</a>
+            <a href="accueil_admin.php?personnel=1">Personnel</a>
         </div>
 
 <?php
 if (isset($_GET['contrat'])){
 ?>
-        
-
         <table>
             <thead>
                 <tr>
@@ -55,10 +55,10 @@ if (isset($_GET['contrat'])){
         </table>
 
         <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
+            <input type="submit" value="Ajouter" name="ajouter">
         </form>
         <?php
-            if(isset($_POST['ajouter_contrat'])){
+            if(isset($_POST['ajouter'])){
         ?>
         <form method="post">
             <div>
@@ -109,10 +109,10 @@ if (isset($_GET['entreprise'])){
         </table>
 
         <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
+            <input type="submit" value="Ajouter" name="ajouter">
         </form>
         <?php
-            if(isset($_POST['ajouter_contrat'])){
+            if(isset($_POST['ajouter'])){
         ?>
         <form action="" method="post">
             <div>
@@ -160,10 +160,10 @@ if (isset($_GET['projet'])){
         </table>
 
         <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
+            <input type="submit" value="Ajouter" name="ajouter">
         </form>
         <?php
-            if(isset($_POST['ajouter_contrat'])){
+            if(isset($_POST['ajouter'])){
         ?>
         <form action="" method="post">
             <div>
@@ -185,16 +185,6 @@ if (isset($_GET['projet'])){
 }
 if (isset($_GET['competence'])){
 ?>
-<<<<<<< HEAD
-=======
-        <form action="" method="post">
-            <div>
-                <label for="competence">Competence</label>
-                <input type="competence" id="competence" name="competence">
-            </div>
-        </form>
-        <input type="submit" value="Creer la competence">
->>>>>>> 402a93b24c6771f675060602216a79c6300eb461
 
         <table>
             <thead>
@@ -212,10 +202,10 @@ if (isset($_GET['competence'])){
         </table>
 
         <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
+            <input type="submit" value="Ajouter" name="ajouter">
         </form>
         <?php
-            if(isset($_POST['ajouter_contrat'])){
+            if(isset($_POST['ajouter'])){
         ?>
         <form action="" method="post">
             <div>
@@ -248,10 +238,10 @@ if (isset($_GET['materiel'])){
         </table>
 
         <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
+            <input type="submit" value="Ajouter" name="ajouter">
         </form>
         <?php
-            if(isset($_POST['ajouter_contrat'])){
+            if(isset($_POST['ajouter'])){
         ?>
         <form action="" method="post">
             <div>
@@ -286,10 +276,10 @@ if (isset($_GET['module'])){
             </tbody>
         </table>
         <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
+            <input type="submit" value="Ajouter" name="ajouter">
         </form>
         <?php
-            if(isset($_POST['ajouter_contrat'])){
+            if(isset($_POST['ajouter'])){
         ?>
         <form action="" method="post">
             <div>
@@ -336,10 +326,10 @@ if (isset($_GET['equipe'])){
         </table>
 
         <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
+            <input type="submit" value="Ajouter" name="ajouter">
         </form>
         <?php
-            if(isset($_POST['ajouter_contrat'])){
+            if(isset($_POST['ajouter'])){
         ?>
         <form action="" method="post">
             <div>
@@ -391,10 +381,10 @@ if (isset($_GET['personnel'])){
         </table>
 
         <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
+            <input type="submit" value="Ajouter" name="ajouter">
         </form>
         <?php
-            if(isset($_POST['ajouter_contrat'])){
+            if(isset($_POST['ajouter'])){
         ?>
         <form action="">
             <div>
