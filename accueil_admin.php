@@ -27,6 +27,7 @@
             <a href="accueil_admin.php?materiel=1">Materiel</a>
             <a href="accueil_admin.php?module=1">Module</a>
             <a href="accueil_admin.php?equipe=1">Équipe</a>
+            <a href="accueil_admin.php?personnel=1">Personnel</a>
         </div>
 
 <?php
@@ -46,12 +47,34 @@ if (isset($_GET['contrat'])){
                 <input type="text" id="cout" name="cout">
             </div>
             <div>
+                <label for="entreprise">Entreprise :</label>
                 <select name="entreprise" id="entreprise">
                     <option value="">Choississez une entreprise</option>
                 </select>
             </div>
         </form>
         <input type="submit">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Délai</th>
+                    <th>Date de signature</th>
+                    <th>Coût</th>
+                    <th>Entreprise</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
 <?php
 }
 if (isset($_GET['entreprise'])){
@@ -72,22 +95,63 @@ if (isset($_GET['entreprise'])){
         </form>
         <input type="submit">
 
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom de l'entreprise</th>
+                    <th>Email de l'entreprise</th>
+                    <th>Contact de l'entreprise</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
+
 <?php
 }
 if (isset($_GET['projet'])){
 ?>
         <form action="" method="post">
             <div>
+                <label for="contrat">contrat</label>
                 <select name="contrat" id="contrat">
                     <option value="">Choississez un contrat</option>
                 </select>
             </div>
+            <input type="submit" value="Selectionner">
             <div>
-                <label for="Cahier de charges"></label>
-                <textarea name="cahier_des_charges" id="cahier_des_charges" cols="30" rows="10"></textarea>
+                <textarea name="cahier_des_charges" placeholder="cahier des charges" id="cahier_des_charges" cols="30" rows="10"></textarea>
             </div>
         </form>
         <input type="submit">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Delai</th>
+                    <th>Budget</th>
+                    <th>Cahier des charges</th>
+                    <th>Id contrat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
 <?php
 }
 if (isset($_GET['competence'])){
@@ -99,6 +163,21 @@ if (isset($_GET['competence'])){
             </div>
         </form>
         <input type="submit">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Compétence</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
 <?php
 }
 if (isset($_GET['materiel'])){
@@ -110,6 +189,21 @@ if (isset($_GET['materiel'])){
             </div>
         </form>
         <input type="submit">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Matériel</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
 <?php
 }
 if (isset($_GET['module'])){
@@ -131,6 +225,25 @@ if (isset($_GET['module'])){
             </div>
         </form>
         <input type="submit">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom du module</th>
+                    <th>Nom de l'équipe</th>
+                    <th>Nom du projet</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
 <?php
 }
 if (isset($_GET['equipe'])){
@@ -150,8 +263,59 @@ if (isset($_GET['equipe'])){
             </div>
         </form>
         <input type="submit">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom de l'équipe</th>
+                    <th>Responsable</th>
+                    <th>Developpeur</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
 <?php
-    }
+}
+if (isset($_GET['personnel'])){
+?>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Date d'inscription</th>
+                    <th>Date de la dernière connexion</th>
+                    <th>Fonction</th>
+                    <th>Admin</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+<?php
+}
 }else{
 ?>
 
