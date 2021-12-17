@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 17 déc. 2021 à 08:21
+-- Généré le : ven. 17 déc. 2021 à 10:36
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 8.0.11
 
@@ -92,6 +92,13 @@ CREATE TABLE `fonction` (
   `nom` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `fonction`
+--
+
+INSERT INTO `fonction` (`id_fonction`, `nom`) VALUES
+(1, 'Developpeur');
+
 -- --------------------------------------------------------
 
 --
@@ -141,19 +148,6 @@ CREATE TABLE `necessiter` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `personne`
---
-
-CREATE TABLE `personne` (
-  `id_personne` int(11) NOT NULL,
-  `nom` varchar(30) DEFAULT NULL,
-  `prenom` varchar(30) DEFAULT NULL,
-  `fonction` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `projet`
 --
 
@@ -164,6 +158,34 @@ CREATE TABLE `projet` (
   `cahier_des_charges` text DEFAULT NULL,
   `id_contrat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `mdp` text NOT NULL,
+  `date_inscription` datetime NOT NULL,
+  `date_derniere_connexion` datetime NOT NULL,
+  `valider` varchar(255) NOT NULL,
+  `codeVerif` varchar(255) NOT NULL,
+  `nom` varchar(30) DEFAULT NULL,
+  `prenom` varchar(30) DEFAULT NULL,
+  `fonction` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `mdp`, `date_inscription`, `date_derniere_connexion`, `valider`, `codeVerif`, `nom`, `prenom`, `fonction`) VALUES
+(27, 'tonipira.tp@gmail.com', '$2y$10$jwOyM4HKfJDDhAo/g7x1iO6OtbKscaI2FXtdv2LwJQiHiWDVisH.m', '2021-12-02 14:52:55', '2021-12-02 14:52:55', 'true', '61a8cfb711155', 'Pira', 'Toni', 1),
+(28, 'topira@gmail.com', '$2y$10$kXyFoQS7DPFozn11zB8A3eu7tYs5VoFZsAbwEybJsTlAdM4CPrRSK', '2021-12-17 09:34:13', '2021-12-17 09:34:13', 'false', '61bc4b85d8579', NULL, NULL, NULL),
+(29, 'fallon59400@gmail.com', '$2y$10$PXecyJ865auI56ApBtZr2utA4SZKcmPu4NQACmA5sbZIU57bWSzqC', '2021-12-17 10:03:30', '2021-12-17 10:03:30', 'true', '61bc52623a38e', NULL, NULL, 1);
 
 --
 -- Index pour les tables déchargées
@@ -237,18 +259,18 @@ ALTER TABLE `necessiter`
   ADD KEY `c12` (`id_materiel`);
 
 --
--- Index pour la table `personne`
---
-ALTER TABLE `personne`
-  ADD PRIMARY KEY (`id_personne`),
-  ADD KEY `c3` (`fonction`);
-
---
 -- Index pour la table `projet`
 --
 ALTER TABLE `projet`
   ADD PRIMARY KEY (`id_projet`),
   ADD KEY `c2` (`id_contrat`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `c3` (`fonction`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -282,7 +304,7 @@ ALTER TABLE `equipe`
 -- AUTO_INCREMENT pour la table `fonction`
 --
 ALTER TABLE `fonction`
-  MODIFY `id_fonction` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fonction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `materiel`
@@ -297,16 +319,16 @@ ALTER TABLE `module_`
   MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `personne`
---
-ALTER TABLE `personne`
-  MODIFY `id_personne` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `projet`
 --
 ALTER TABLE `projet`
   MODIFY `id_projet` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Contraintes pour les tables déchargées
@@ -317,7 +339,7 @@ ALTER TABLE `projet`
 --
 ALTER TABLE `appartenir`
   ADD CONSTRAINT `c10` FOREIGN KEY (`id_equipe`) REFERENCES `equipe` (`id_equipe`),
-  ADD CONSTRAINT `c9` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`);
+  ADD CONSTRAINT `c9` FOREIGN KEY (`id_personne`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `contrat`
@@ -329,13 +351,13 @@ ALTER TABLE `contrat`
 -- Contraintes pour la table `equipe`
 --
 ALTER TABLE `equipe`
-  ADD CONSTRAINT `c4` FOREIGN KEY (`chef_equipe`) REFERENCES `personne` (`id_personne`);
+  ADD CONSTRAINT `c4` FOREIGN KEY (`chef_equipe`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `maitriser`
 --
 ALTER TABLE `maitriser`
-  ADD CONSTRAINT `c7` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`),
+  ADD CONSTRAINT `c7` FOREIGN KEY (`id_personne`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `c8` FOREIGN KEY (`id_competence`) REFERENCES `competence` (`id_competence`);
 
 --
@@ -353,16 +375,16 @@ ALTER TABLE `necessiter`
   ADD CONSTRAINT `c12` FOREIGN KEY (`id_materiel`) REFERENCES `materiel` (`id_materiel`);
 
 --
--- Contraintes pour la table `personne`
---
-ALTER TABLE `personne`
-  ADD CONSTRAINT `c3` FOREIGN KEY (`fonction`) REFERENCES `fonction` (`id_fonction`);
-
---
 -- Contraintes pour la table `projet`
 --
 ALTER TABLE `projet`
   ADD CONSTRAINT `c2` FOREIGN KEY (`id_contrat`) REFERENCES `contrat` (`id_contrat`);
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `c3` FOREIGN KEY (`fonction`) REFERENCES `fonction` (`id_fonction`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,9 +1,9 @@
 <?php
     include("./inc/layout.php");
-    var_dump($_SESSION);
     if (!isset($_SESSION["valider"])){
 ?>
-    <H1>Accueil non autorisé</H1>
+    <H1>Accueil non autorisé, vous n'avez pas les permissions.</H1>
+
 <?php }else{ ?>
         <title>Accueil | Simpléduc</title>
     </head>
