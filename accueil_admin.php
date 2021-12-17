@@ -32,31 +32,32 @@
 if (isset($_GET['contrat'])){
 ?>
         
+        <div class="item_admin">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Délai</th>
+                        <th>Date de signature</th>
+                        <th>Coût</th>
+                        <th>Entreprise</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Délai</th>
-                    <th>Date de signature</th>
-                    <th>Coût</th>
-                    <th>Entreprise</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
-        </form>
+            <form method="post">
+                <input type="submit" value="Ajouter" name="ajouter_contrat">
+            </form>
+        </div>
         <?php
             if(isset($_POST['ajouter_contrat'])){
         ?>
@@ -88,47 +89,48 @@ if (isset($_GET['contrat'])){
 }
 if (isset($_GET['entreprise'])){
 ?>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom de l'entreprise</th>
-                    <th>Email de l'entreprise</th>
-                    <th>Contact de l'entreprise</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="item_admin">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom de l'entreprise</th>
+                        <th>Email de l'entreprise</th>
+                        <th>Contact de l'entreprise</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <form method="post">
-            <input type="submit" value="Ajouter" name="ajouter_contrat">
-        </form>
-        <?php
-            if(isset($_POST['ajouter_contrat'])){
-        ?>
-        <form action="" method="post">
-            <div>
-                <label for="nom">Nom de l'entreprise:</label>
-                <input type="text" id="nom" name="nom">
-            </div>
-            <div>
-                <label for="coordonnees">Email de l'entreprise:</label>
-                <input type="email" id="coordonnees" name="coordonnees">
-            </div>
-            <div>
-                <label for="contact">Email du contact de l'entreprise:</label>
-                <input type="email" id="contact" name="contact">
-            </div>
-        </form>
-        <input type="submit">
+            <form method="post">
+                <input type="submit" value="Ajouter" name="ajouter_contrat">
+            </form>
+            <?php
+                if(isset($_POST['ajouter_contrat'])){
+            ?>
+            <form action="" method="post">
+                <div>
+                    <label for="nom">Nom de l'entreprise:</label>
+                    <input type="text" id="nom" name="nom">
+                </div>
+                <div>
+                    <label for="coordonnees">Email de l'entreprise:</label>
+                    <input type="email" id="coordonnees" name="coordonnees">
+                </div>
+                <div>
+                    <label for="contact">Email du contact de l'entreprise:</label>
+                    <input type="email" id="contact" name="contact">
+                </div>
+            </form>
+            <input type="submit">
+        </div>
         <?php
             }
         ?>
@@ -185,7 +187,7 @@ if (isset($_GET['projet'])){
 }
 if (isset($_GET['competence'])){
 ?>
-
+git push
         <table>
             <thead>
                 <tr>

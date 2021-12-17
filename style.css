@@ -113,3 +113,8 @@ text-align: center;
     font-size: 1.2em;
     border-radius: 5px;
 }
+
+.item_admin{
+    display: flex;
+    flex-direction: column;
+}
