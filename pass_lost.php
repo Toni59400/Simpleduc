@@ -21,57 +21,51 @@ if (isset($_POST['mdp_lost'])){
                     ';
             $email->envoyerMailer($email2, 'Recuperation MDP', $message, '');
     }
-} if (isset($_GET['cli'])){ ?>
+} if (isset($_GET['cli'])){ 
+    
+include("./inc/layout.php");
+?>
 
-<!DOCTYPE HTML>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="style.css"/>
-        <title>Inscription</title>
+
+        <title>Changement Mot De Passe</title>
     </head>
     <body>
-    <div class="flex_center">
-        <h1>Changement de mdp</h1>
-            <form method="post" class="inscription">
-                <label for="pass">Nouveau mdp</label>
-                <input type="pass" name="pass">
-                <label for="pass">Confirmer mdp</label>
-                <input type="pass" name="pass_confirm">
-                <input type="submit" name="pass_modif" value="Modifier le mdp">
-            </form>
-        <a href="index.php">Retour</a>
-    </div>
+        <div class="flex_center">
+            <h1>Changement de mdp</h1>
+                <form method="post" class="inscription">
+                    <label for="pass">Nouveau mdp</label>
+                    <input type="pass" name="pass">
+                    <label for="pass">Confirmer mdp</label>
+                    <input type="pass" name="pass_confirm">
+                    <input type="submit" name="pass_modif" value="Modifier le mdp">
+                </form>
+            <a href="index.php">Retour</a>
+        </div>
 
-    </body>
-</html>
 
-<?php } else {?>
 
-<!DOCTYPE HTML>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="style.css"/>
-        <title>Inscription</title>
+<?php 
+include("./inc/layout_bottom.php");
+} else {
+include("./inc/layout.php");
+?>
+        <title>Mail Recuperation Pass</title>
     </head>
     <body>
-    <div class="flex_center">
-        <h1>Recuperation MDP</h1>
-            <form method="post" class="inscription">
-                <label for="mail">Votre Adresse mail</label>
-                <input type="mail" name="email_connexion">
-                <input type="submit" name="mdp_lost" value="Envoyer mail recup">
-            </form>
-        <a href="index.php">Retour</a>
-    </div>
+        <div class="flex_center">
+            <h1>Recuperation MDP</h1>
+                <form method="post" class="inscription">
+                    <label for="mail">Votre Adresse mail</label>
+                    <input type="mail" name="email_connexion">
+                    <input type="submit" name="mdp_lost" value="Envoyer mail recup">
+                </form>
+            <a href="index.php">Retour</a>
+        </div>
 
-    </body>
-</html>
 
-<?php } if (isset($_POST['pass_modif'])){
+<?php 
+include("./inc/layout_bottom.php");
+} if (isset($_POST['pass_modif'])){
     if (isset($_POST['pass']) && isset($_POST["pass_confirm"])){
         if ($_POST['pass'] == $_POST['pass_confirm']){
             $email3 = $_GET['cli'];
