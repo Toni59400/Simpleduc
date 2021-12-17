@@ -1,6 +1,5 @@
 <?php
     include("./inc/layout.php");
-    include("./inc/header.php");
 ?>
 
 
