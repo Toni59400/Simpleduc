@@ -61,7 +61,7 @@ require_once './classes/class_mail.php';
             var_dump(password_verify($mdp, $data_cli[0]['mdp']));
             if (password_verify($mdp, $data_cli[0]['mdp'])==1){
                 if ($data_cli[0]['valider'] == "true"){
-                header("Location: accueil.php");
+                header("Location: ./accueil/accueil.php");
                 } else {
                     echo "Compte non verifie";
                 }
