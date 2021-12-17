@@ -139,27 +139,28 @@ if (isset($_GET['entreprise'])){
 }
 if (isset($_GET['projet'])){
 ?>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Delai</th>
-                    <th>Budget</th>
-                    <th>Cahier des charges</th>
-                    <th>Id contrat</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="item_admin">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Delai</th>
+                        <th>Budget</th>
+                        <th>Cahier des charges</th>
+                        <th>Id contrat</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -187,21 +188,22 @@ if (isset($_GET['projet'])){
 }
 if (isset($_GET['competence'])){
 ?>
-git push
-        <table>
-            <thead>
-                <tr>
-                    <th>Compétence</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="item_admin">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Compétence</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -223,21 +225,22 @@ git push
 }
 if (isset($_GET['materiel'])){
 ?>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Matériel</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="item_admin">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Matériel</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -258,25 +261,27 @@ if (isset($_GET['materiel'])){
 <?php
 }
 if (isset($_GET['module'])){
-?>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom du module</th>
-                    <th>Nom de l'équipe</th>
-                    <th>Nom du projet</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
-                </tr>
-            </tbody>
-        </table>
+?>      
+        <div class="item_admin">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom du module</th>
+                        <th>Nom de l'équipe</th>
+                        <th>Nom du projet</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
         </form>
@@ -307,25 +312,26 @@ if (isset($_GET['module'])){
 }
 if (isset($_GET['equipe'])){
 ?>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom de l'équipe</th>
-                    <th>Responsable</th>
-                    <th>Developpeur</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="item_admin">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom de l'équipe</th>
+                        <th>Responsable</th>
+                        <th>Developpeur</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -354,33 +360,35 @@ if (isset($_GET['equipe'])){
 <?php
 }
 if (isset($_GET['personnel'])){
-?>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Email</th>
-                    <th>Date d'inscription</th>
-                    <th>Date de la dernière connexion</th>
-                    <th>Fonction</th>
-                    <th>Admin</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="">Modifier</a><a href="">Supprimer</a></td>
-                </tr>
-            </tbody>
-        </table>
+?>  
+        <div class="item_admin">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Email</th>
+                        <th>Date d'inscription</th>
+                        <th>Date de la dernière connexion</th>
+                        <th>Fonction</th>
+                        <th>Admin</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
