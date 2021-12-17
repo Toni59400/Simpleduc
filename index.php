@@ -47,7 +47,7 @@ require_once './classes/class_mail.php';
                         </head>
                         <body>
                             <p>Veuillez confirmez votre compte en cliquant sur ce lien. </p>
-                            <a href="verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici ! </a>
+                            <a href="http://localhost:8080/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici !</a>
                     </html>
                     ';
             $email->envoyerMailer($email2, 'Verification Compte', $message, '');
