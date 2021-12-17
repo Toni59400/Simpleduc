@@ -61,6 +61,7 @@
     background-color: rgb(240, 240, 240);
     margin: 10px;
     padding: 5px;
+    text-decoration: underline;
 }
 
 .body_table{
