@@ -431,18 +431,16 @@ if (isset($_GET['equipe'])){
             </div>
             <div>
                 <label class="inline" for="dev">Développeur</label>
-                <select multiple name="dev">
                     <?php 
                     $data_dev = $db->query("SELECT user.nom as nomp, user.prenom as prenomp, user.id as id from user INNER JOIN fonction on user.fonction = fonction.id_fonction where fonction.nom = 'Developpeur' order by nomp"); 
                     $data_dev = $data_dev->fetchAll();
                     foreach($data_dev as $dev){
                         
                     ?>
-                    <option value="<?=$dev["id"]?>"> <?=$dev["prenomp"]?>  <?=$dev["nomp"]?></option>
+                    <input type="checkbox" value="<?=$dev['id']?>" name="dev[]"><label><?=$dev['nomp']?> <?=$dev['prenomp']?></label>
                     <?php
                         }
                     ?>
-                </select>
             </div>
             <div>
                 <label class="inline">Responsable (chef équipe)</label>
@@ -561,56 +559,74 @@ if (isset($_GET['personnel'])){
 // contrat 
 if (isset($_POST['add_contrat'])){
     if ((isset($_POST["delai"]) & !empty($_POST["delai"])) &  (isset($_POST["date_signature"]) & !empty($_POST["date_signature"])) & (isset($_POST["cout"]) & !empty($_POST["cout"])) & (isset($_POST["entreprise"]) & !empty($_POST["entreprise"]))){
-
+        $delai = $_POST["delai"];
+        $date_signature = $_POST['date_signature'];
+        $cout = $_POST['cout'];
+        $entreprise = $_POST["entreprise"];
+        
     }
 }
 
 //entreprise
 if (isset($_POST["add_entreprise"])){
     if ((isset($_POST["nom"]) & !empty($_POST["nom"])) & (isset($_POST["coordonnees"]) & !empty($_POST["coordonnees"])) & (isset($_POST["contact"]) & !empty($_POST["contact"]))){
-    
+        $nom = $_POST["nom"];
+        $coordonnes = $_POST["coordonnes"]; 
+        $contact = $_POST["contact"];
     }
 }
 
 //projet
 if (isset($_POST["add_projet"])){
     if ((isset($_POST["contrat"]) & !empty($_POST["contrat"])) & (isset($_POST["cahier_des_charges"]) & !empty($_POST["cahier_des_charges"])) & (isset($_POST['budget']) & !empty($_POST["budget"]))){
-    
+        $contrat = $_POST["contrat"];
+        $cahier_des_charges = $_POST["cahier_des_charges"];
+        $budget = $_POST['budget'];
     }
 }
 
 //competence
 if (isset($_POST["add_competence"])){
     if ((isset($_POST['nom']) & !empty($_POST['nom']))){
-
+        $nom_competence = $_POST['nom_competence'];
     }
 }
 
 //materiel
 if (isset($_POST["add_materiel"])){
     if((isset($_POST['nom']) & !empty($_POST['nom']))){
-
+        $nom_mat = $_POST["nom"];
     }
 }
 
 //module
 if (isset($_POST["add_module"])){
     if ((isset($_POST['nom']) & !empty($_POST['nom'])) & (isset($_POST['equipe']) & !empty($_POST['equipe'])) & (isset($_POST['projet']) & !empty($_POST['projet']))){
-
+        $nom =  $_POST["nom"];
+        $equipe = $_POST["equipe"];
+        $projet = $_POST["projet"];
     }
 }
 
 //equipe
 if (isset($_POST["add_equipe"])){
     if ((isset($_POST['nom']) & !empty($_POST['nom'])) & (isset($_POST['dev']) & !empty($_POST['dev'])) & (isset($_POST['chef']) & !empty($_POST['chef']))){
-        var_dump($_POST['dev']);
+        foreach($_POST['dev'] as $id){
+            //  ajout dans bdd appartenir
+        }
+    $nom = $_POST["nom"];
+    $chef = $_POST["chef"];
     }
 }
 
 //user
 if (isset($_POST["add_user"])){
     if ((isset($_POST['nom_personnel']) & !empty($_POST['nom_personnel'])) & (isset($_POST['prenom_personnel']) & !empty($_POST['prenom_personnel'])) & (isset($_POST['email_personnel']) & !empty($_POST['email_personnel'])) & (isset($_POST['fonction']) & !empty($_POST['fonction'])) & (isset($_POST['admin']) & !empty($_POST['admin']))){
-
+        $nom = $_POST["nom_personnel"];
+        $prenom = $_POST["prenom_personnel"];
+        $mail  = $_POST["email_personnel"];
+        $fonction = $_POST["fonction"];
+        $admin = $_POST["admin"];
     }
 }
 
