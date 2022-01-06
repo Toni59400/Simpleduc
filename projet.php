@@ -25,8 +25,13 @@
                         <option value="<?=$entreprise["id_entreprise"]?>"><?=$entreprise["nom"]?></option>
                     <?php } ?>
                 </select>
-                <input type="submit" value="Chercher" name="chercher_contrat">
+                <input type="submit" value="chercher_contrat" name="chercher_contrat">
             </form>
+            <?php if (isset($_POST["chercher_contrat"])){
+                $id_entreprise = $_POST["entreprise"];
+                $data_contrat = $db->query("SELECT * from contrat where id_entreprise='$id_entreprise'");
+                $data_contrat = $data_contrat-> fetchAll();
+                ?>
             <div class="body_table">
                 <table>
                     <thead>
@@ -36,7 +41,7 @@
                         <th>Coût</th>
                     </thead>
                     <tbody>
-                        <?php foreach($data_entreprise as $entreprise){?>
+                        <?php foreach($data_contrat as $contrat){?>
                         <tr>
                             <td><?=$contrat["id_contrat"]?></td>
                             <td><?=$contrat["delai"]?></td>
@@ -47,6 +52,9 @@
                     </tbody>
                 </table>
             </div>
+            <?php
+            }
+            ?>
         </div>
 <?php 
 }
