@@ -1,4 +1,6 @@
 <?php
+include('config/config.php');
+include('config/dbconnection.php');
     include("./inc/layout.php");
     if (isset($_SESSION['admin']) && $_SESSION["admin"] == "oui"){
 ?>
@@ -115,7 +117,7 @@ if (isset($_GET['entreprise'])){
             <?php
                 if(isset($_POST['ajouter_contrat'])){
             ?>
-            <form action="" method="post">
+            <form method="post">
                 <div>
                     <label for="nom">Nom de l'entreprise:</label>
                     <input type="text" id="nom" name="nom">
@@ -128,13 +130,21 @@ if (isset($_GET['entreprise'])){
                     <label for="contact">Email du contact de l'entreprise:</label>
                     <input type="email" id="contact" name="contact">
                 </div>
+                <input type="submit" name="ajouter_entreprise" value="Ajouter">
             </form>
-            <input type="submit">
         </div>
         <?php
+        } if (isset($_POST["ajouter_entreprise"])){
+            if (isset($_POST['nom']) && isset($_POST['coordonnees']) && isset($_POST['contact'])){
+                $nom = $_POST['nom'];
+                $coordonnes = $_POST['coordonnees'];
+                $contact = $_POST['contact'];
+                $sql = $db->prepare("INSERT into entreprise(coordonnees, contact, nom) values ('$coordonnes','$contact','$nom')");
+                $sql -> execute();
+                echo "ok" ; 
             }
-        ?>
-
+        }
+                ?>
 <?php
 }
 if (isset($_GET['projet'])){
@@ -160,7 +170,6 @@ if (isset($_GET['projet'])){
                     </tr>
                 </tbody>
             </table>
-        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -188,7 +197,6 @@ if (isset($_GET['projet'])){
 }
 if (isset($_GET['competence'])){
 ?>
-        <div class="item_admin">
             <table>
                 <thead>
                     <tr>
@@ -203,7 +211,6 @@ if (isset($_GET['competence'])){
                     </tr>
                 </tbody>
             </table>
-        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -240,7 +247,6 @@ if (isset($_GET['materiel'])){
                     </tr>
                 </tbody>
             </table>
-        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -261,8 +267,7 @@ if (isset($_GET['materiel'])){
 <?php
 }
 if (isset($_GET['module'])){
-?>      
-        <div class="item_admin">
+?>
             <table>
                 <thead>
                     <tr>
@@ -281,7 +286,6 @@ if (isset($_GET['module'])){
                     </tr>
                 </tbody>
             </table>
-        </div>
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
         </form>
@@ -331,7 +335,6 @@ if (isset($_GET['equipe'])){
                     </tr>
                 </tbody>
             </table>
-        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -360,8 +363,7 @@ if (isset($_GET['equipe'])){
 <?php
 }
 if (isset($_GET['personnel'])){
-?>  
-        <div class="item_admin">
+?>
             <table>
                 <thead>
                     <tr>
@@ -388,7 +390,6 @@ if (isset($_GET['personnel'])){
                     </tr>
                 </tbody>
             </table>
-        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
