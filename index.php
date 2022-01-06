@@ -64,11 +64,15 @@ include('./inc/layout.php');
                     if ($data_cli[0]['admin'] == "true"){
                         echo $data_cli[0]["admin"];
                         $_SESSION['admin'] = "oui";
+                        $sql = $db->prepare("UPDATE user set date_derniere_connexion = NOW() where email = '$email'");
+                        $sql->execute();
                         header("Location: accueil_admin.php");
                     }else {
                         $_SESSION["admin"] = "non";
                         $_SESSION['valider'] = "true";
                         $_SESSION['id'] = $data_cli[0]['id'];
+                        $sql = $db->prepare("UPDATE user set date_derniere_connexion = NOW() where email = '$email'");
+                        $sql->execute();
                         header("Location: accueil.php");
                     }
                 } else {

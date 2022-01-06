@@ -430,8 +430,13 @@ if (isset($_GET['equipe'])){
                     ?>
                     <tr>
                         <td><?=$equipe["nom"]?></td>
-                        <td><?=$chef_equipe["nom"]?>  <?=$chef_equipe["prenom"]?></td>
-                        <td><?php foreach($data_dev as $developpeur){$dev_name = $db->query("SELECT * from user where id = '$developpeur'"); $dev_name= $dev_name->fetchAll(); echo $dev_name['nom']; }?></td>
+                        <td><?=$chef_equipe[0]["nom"]?>  <?=$chef_equipe[0]["prenom"]?></td>
+                        <td><?php foreach($data_dev as $developpeur){
+                            $id = $developpeur['id_personne'];
+                            $dev_name = $db->query("SELECT * from user where id = '$id'"); 
+                            $dev_name= $dev_name->fetch(); 
+                            echo $dev_name['nom'].' '.$dev_name['prenom'].' ; ';
+                        }?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
                     <?php } ?>
@@ -553,10 +558,6 @@ if (isset($_GET['personnel'])){
                 <input type="pass"  name="mdp">
             </div>
             <div>
-                <label class="inline" for="pass">Confirmer Mot de passe</label>
-                <input type="pass"  name="mdp_confirm">
-            </div>
-            <div>
                 <select name="fonction" id="fonction">
                 <?php 
                 $data_fonction2 = $db->query("SELECT * from fonction");
@@ -606,7 +607,7 @@ if (isset($_POST["add_projet"])){
         $contrat = $_POST["contrat"];
         $cahier_des_charges = $_POST["cahier_des_charges"];
         $budget = $_POST['budget'];
-        $sql = $db->prepare("INSERT into projet (delai, budget, cahier_des_charges, id_contrat) values ('$delai', '$budget', '$cahier_des_charges', '$contrat')");
+        $sql = $db->prepare("INSERT into projet (delais, budget, cahier_des_charges, id_contrat) values ('$delai', '$budget', '$cahier_des_charges', '$contrat')");
         $sql = $sql->execute();
     }
 }
@@ -614,7 +615,7 @@ if (isset($_POST["add_projet"])){
 //competence
 if (isset($_POST["add_competence"])){
     if ((isset($_POST['nom']) & !empty($_POST['nom']))){
-        $nom_competence = $_POST['nom_competence'];
+        $nom_competence = $_POST['nom'];
         $sql = $db->prepare("INSERT into competence (nom) values ('$nom_competence')");
         $sql = $sql->execute();
     }
@@ -649,8 +650,10 @@ if (isset($_POST["add_equipe"])){
         $sql = $sql->execute();
         $id_equipe = $db->query("SELECT * from equipe where nom = '$nom'"); 
         $id_equipe = $id_equipe->fetchAll();
+        $id_e= $id_equipe[0]['id_equipe'];
         foreach($_POST['dev'] as $id){
-            $sql = $db->prepare("INSERT into appartenir (id_personne, id_equipe) values ('$id', '$id_equipe')");
+            $id = (int)$id;
+            $sql = $db->prepare("INSERT into appartenir (id_personne, id_equipe) values ('$id', '$id_e')");
             $sql = $sql->execute();
         }
     }
@@ -658,17 +661,21 @@ if (isset($_POST["add_equipe"])){
 
 //user
 if (isset($_POST["add_user"])){
-    if ((isset($_POST['mdp_confirm']) & !empty($_POST['mdp_confirm'])) & (isset($_POST['mdp']) & !empty($_POST['mdp'])) & (isset($_POST['nom_personnel']) & !empty($_POST['nom_personnel'])) & (isset($_POST['prenom_personnel']) & !empty($_POST['prenom_personnel'])) & (isset($_POST['email_personnel']) & !empty($_POST['email_personnel'])) & (isset($_POST['fonction']) & !empty($_POST['fonction'])) & (isset($_POST['admin']) & !empty($_POST['admin']))){
-        if ($_POST['mdp_confirm'] == $_POST['mdp']){
-            $mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
-            $nom = $_POST["nom_personnel"];
-            $prenom = $_POST["prenom_personnel"];
-            $mail  = $_POST["email_personnel"];
-            $fonction = $_POST["fonction"];
-            $admin = $_POST["admin"];
-            $sql = $db->prepare("INSERT into user (email, mdp, date_inscription, date_derniere_connexion, valider, codeVerif, nom, prenom, fonction, admin) values ('$mail', '$mdp', NOW(), NOW(), 'true', '', '$nom', '$prenom', '$fonction', '$admin')");
-            $sql = $sql->execute();
+    if (isset($_POST['mdp']) & isset($_POST['nom_personnel']) & isset($_POST['prenom_personnel'])  & isset($_POST['email_personnel'])  & isset($_POST['fonction'])){
+        echo "passe";
+        $mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
+        $nom = $_POST["nom_personnel"];
+        $prenom = $_POST["prenom_personnel"];
+        $mail  = $_POST["email_personnel"];
+        $fonction = $_POST["fonction"];
+        if (!isset($_POST["admin"])){
+            $admin = "false";
+        }else{
+            $admin = 'true';
         }
+        $sql = $db->prepare("INSERT into user (email, mdp, date_inscription, date_derniere_connexion, valider, codeVerif, nom, prenom, fonction, admin) values ('$mail', '$mdp', NOW(), NOW(), 'true', '', '$nom', '$prenom', '$fonction', '$admin')");
+        $sql = $sql->execute();
+        echo "ok";
     }
 }
 
@@ -682,3 +689,4 @@ if (isset($_POST["add_user"])){
 }
     include("./inc/layout_bottom.php");
 ?>
+
