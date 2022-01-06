@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 17 déc. 2021 à 13:37
+-- Généré le : jeu. 06 jan. 2022 à 14:06
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 8.0.11
 
@@ -51,6 +51,7 @@ CREATE TABLE `competence` (
 
 CREATE TABLE `contrat` (
   `id_contrat` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
   `delai` varchar(30) DEFAULT NULL,
   `date_signature` datetime DEFAULT NULL,
   `cout` varchar(30) DEFAULT NULL,
@@ -66,8 +67,16 @@ CREATE TABLE `contrat` (
 CREATE TABLE `entreprise` (
   `id_entreprise` int(11) NOT NULL,
   `coordonnees` varchar(255) DEFAULT NULL,
-  `contact` varchar(30) DEFAULT NULL
+  `contact` varchar(30) DEFAULT NULL,
+  `nom` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `entreprise`
+--
+
+INSERT INTO `entreprise` (`id_entreprise`, `coordonnees`, `contact`, `nom`) VALUES
+(1, 'tonipira.tp@gmail.com', 'tonipira.tp@gmail.com', 'EPSI');
 
 -- --------------------------------------------------------
 
@@ -185,7 +194,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `mdp`, `date_inscription`, `date_derniere_connexion`, `valider`, `codeVerif`, `nom`, `prenom`, `fonction`, `admin`) VALUES
 (27, 'tonipira.tp@gmail.com', '$2y$10$jwOyM4HKfJDDhAo/g7x1iO6OtbKscaI2FXtdv2LwJQiHiWDVisH.m', '2021-12-02 14:52:55', '2021-12-02 14:52:55', 'true', '61a8cfb711155', 'Pira', 'Toni', 1, 'false'),
-(29, 'fallon59400@gmail.com', '$2y$10$PXecyJ865auI56ApBtZr2utA4SZKcmPu4NQACmA5sbZIU57bWSzqC', '2021-12-17 10:03:30', '2021-12-17 10:03:30', 'true', '61bc52623a38e', NULL, NULL, 1, 'true');
+(29, 'fallon59400@gmail.com', '$2y$10$PXecyJ865auI56ApBtZr2utA4SZKcmPu4NQACmA5sbZIU57bWSzqC', '2021-12-17 10:03:30', '2021-12-17 10:03:30', 'true', '61bc52623a38e', 'ADMIN', 'ADMIN', 1, 'true');
 
 --
 -- Index pour les tables déchargées
@@ -292,7 +301,7 @@ ALTER TABLE `contrat`
 -- AUTO_INCREMENT pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
-  MODIFY `id_entreprise` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `equipe`
