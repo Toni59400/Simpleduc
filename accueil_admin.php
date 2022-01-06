@@ -1,6 +1,6 @@
 <?php
-include('config/config.php');
-include('config/dbconnection.php');
+    include('config/config.php');
+    include('config/dbconnection.php');
     include("./inc/layout.php");
     if (isset($_SESSION['admin']) && $_SESSION["admin"] == "oui"){
 ?>

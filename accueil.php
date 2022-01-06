@@ -1,4 +1,6 @@
 <?php
+    include('config/config.php');
+    include('config/dbconnection.php');
     include("./inc/layout.php");
     if (!isset($_SESSION["valider"])){
 ?>
