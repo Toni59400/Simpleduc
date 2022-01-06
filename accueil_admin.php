@@ -20,7 +20,7 @@ include('config/dbconnection.php');
         <div>
             <nav class="nav_admin">
                 <div><a href="accueil_admin.php?contrat=1">Contrat</a></div>
-                <div><a href="accueil_admin.php?entreprise=1">Ajouter une entreprise</a></div>
+                <div><a href="accueil_admin.php?entreprise=1">Entreprise</a></div>
                 <div><a href="accueil_admin.php?projet=1">Projet</a></div>
                 <div><a href="accueil_admin.php?competence=1">Competence</a></div>
                 <div><a href="accueil_admin.php?materiel=1">Materiel</a></div>
@@ -32,6 +32,8 @@ include('config/dbconnection.php');
 
 <?php
 if (isset($_GET['contrat'])){
+    $data_contrat = $db->query("SELECT * from contrat");
+    $data_contrat = $data_contrat -> fetchAll();
 ?>
         
         <div class="item_admin">
@@ -46,13 +48,20 @@ if (isset($_GET['contrat'])){
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_contrat as $contrat){
+                        $id_entreprise = $contrat["id_entreprise"];
+                        $nom_entreprise = $db->query("SELECT * from entreprise where id_entreprise = '$id_entreprise'");
+                        $nom_entreprise = $nom_entreprise -> fetch(); 
+                    ?> 
+                        
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?= $contrat["delai"]?></td>
+                        <td><?= $contrat["date_signature"]?></td>
+                        <td><?= $contrat["cout"]?></td>
+                        <td><?=$nom_entreprise?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
 
@@ -90,6 +99,8 @@ if (isset($_GET['contrat'])){
 <?php
 }
 if (isset($_GET['entreprise'])){
+    $data_entreprise = $db->query("SELECT * from entreprise");
+    $data_entreprise = $data_entreprise -> fetchAll();
 ?>
         <div class="item_admin">
             <table>
@@ -102,12 +113,14 @@ if (isset($_GET['entreprise'])){
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_entreprise as $entreprise){?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?=$entreprise["nom"]?></td>
+                        <td><?=$entreprise["coordonnees"]?></td>
+                        <td><?=$entreprise["contact"]?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
 
@@ -148,6 +161,8 @@ if (isset($_GET['entreprise'])){
 <?php
 }
 if (isset($_GET['projet'])){
+    $data_projet = $db->query("SELECT * from projet");
+    $data_projet = $data_projet -> fetchAll();
 ?>
         <div class="item_admin">
             <table>
@@ -157,17 +172,26 @@ if (isset($_GET['projet'])){
                         <th>Budget</th>
                         <th>Cahier des charges</th>
                         <th>Id contrat</th>
+                        <th>Nom Contrat</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_projet as $projet) { 
+                        $id_contrat = $projet['id_contrat'];
+                        $nom_contrat = $db -> query("SELECT * from contrat where id_contrat = '$id_contrat'");
+                        $nom_contrat = $nom_contrat->fetchAll(); 
+                    ?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?=$projet["delais"]?></td>
+                        <td><?=$projet["budget"]?></td>
+                        <td><?=$projet["cahier_des_charges"]?></td>
+                        <td><?=$projet["id_contrat"]?></td>
+                        <td><?=$nom_contrat[0]?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
+
+                    <?php } ?>
                 </tbody>
             </table>
 
@@ -196,7 +220,10 @@ if (isset($_GET['projet'])){
 <?php
 }
 if (isset($_GET['competence'])){
+    $data_competence = $db->query("SELECT * from competence");
+    $data_competence = $data_competence -> fetchAll();
 ?>
+        <div class="item_admin">
             <table>
                 <thead>
                     <tr>
@@ -205,12 +232,15 @@ if (isset($_GET['competence'])){
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_competence as $competence){ ?>
                     <tr>
-                        <td></td>
+                        <td><?=$competence["nom"]?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
+        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
@@ -231,6 +261,8 @@ if (isset($_GET['competence'])){
 <?php
 }
 if (isset($_GET['materiel'])){
+    $data_materiel = $db->query("SELECT * from materiel");
+    $data_materiel = $data_materiel -> fetchAll();
 ?>
         <div class="item_admin">
             <table>
@@ -241,10 +273,12 @@ if (isset($_GET['materiel'])){
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_materiel as $materiel){ ?>
                     <tr>
-                        <td></td>
+                        <td><?=$materiel["nom"]?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
 
@@ -267,7 +301,10 @@ if (isset($_GET['materiel'])){
 <?php
 }
 if (isset($_GET['module'])){
+    $data_module = $db->query("SELECT * from module_");
+    $data_module = $data_module -> fetchAll();
 ?>
+        <div class="item_admin">
             <table>
                 <thead>
                     <tr>
@@ -278,14 +315,19 @@ if (isset($_GET['module'])){
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_module as $module){ ?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?= $module["nom"]?></td>
+                        <td><?= $module["equipe"]?></td>
+                        <td><?= $module["projet"]?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
+        </div>
+
+        
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
         </form>
@@ -315,6 +357,8 @@ if (isset($_GET['module'])){
 <?php
 }
 if (isset($_GET['equipe'])){
+    $data_equipe = $db->query("SELECT * from equipe");
+    $data_equipe = $data_equipe -> fetchAll();
 ?>
         <div class="item_admin">
             <table>
@@ -327,12 +371,21 @@ if (isset($_GET['equipe'])){
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_equipe as $equipe){
+                        $id_equipe = $equipe['id_equipe'];
+                        $id_chef = $equipe['chef_equipe'];
+                        $chef_equipe = $db->query("SELECT * from user where id = '$id_chef'");
+                        $chef_equipe = $chef_equipe->fetchAll();
+                        $data_dev = $db->query("SELECT * from appartenir where id_equipe = '$id_equipe'");
+
+                    ?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?=$equipe["nom"]?></td>
+                        <td><?=$chef_equipe["nom"]?>  <?=$chef_equipe["prenom"]?></td>
+                        <td><?php foreach($data_dev as $developpeur){$dev_name = $db->query("SELECT * from user where id = '$developpeur'"); $dev_name= $dev_name->fetchAll(); echo $dev_name['nom']; }?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
 
@@ -363,7 +416,10 @@ if (isset($_GET['equipe'])){
 <?php
 }
 if (isset($_GET['personnel'])){
+    $data_personnel = $db->query("SELECT * from user");
+    $data_personnel = $data_personnel -> fetchAll();
 ?>
+        <div class="item_admin">
             <table>
                 <thead>
                     <tr>
@@ -372,24 +428,31 @@ if (isset($_GET['personnel'])){
                         <th>Email</th>
                         <th>Date d'inscription</th>
                         <th>Date de la dernière connexion</th>
-                        <th>Fonction</th>
+                        <th>Fonction</th> <!--Developpeur-->
                         <th>Admin</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_personnel as $personnel) { 
+                        $id_fonction = $personnel['fonction']; 
+                        $data_fonction = $db->query("SELECT * from fonction where id_fonction = '$id_fonction'");
+                        $data_fonction = $data_fonction -> fetchAll();
+                    ?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?=$personnel["nom"]?></td>
+                        <td><?=$personnel["prenom"]?></td>
+                        <td><?=$personnel["email"]?></td>
+                        <td><?=$personnel["date_inscription"]?></td>
+                        <td><?=$personnel["date_derniere_connexion"]?></td>
+                        <td><?=$data_fonction[0]["nom"]?></td>
+                        <td><?=$personnel["admin"]?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
+        </div>
 
         <form method="post">
             <input type="submit" value="Ajouter" name="ajouter_contrat">
