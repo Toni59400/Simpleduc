@@ -431,11 +431,23 @@ if (isset($_GET['equipe'])){
             </div>
             <div>
                 <label class="inline" for="dev">Développeur</label>
-                <input type="text">   ///    mettre un selecteur multiple ! 
+                <select multiple name="dev">
+                    <?php 
+                    $data_dev = $db->query("SELECT user.nom as nomp, user.prenom as prenomp, user.id as id from user INNER JOIN fonction on user.fonction = fonction.id_fonction where fonction.nom = 'Developpeur' order by nomp"); 
+                    $data_dev = $data_dev->fetchAll();
+                    foreach($data_dev as $dev){
+                        
+                    ?>
+                    <option value="<?=$dev["id"]?>"> <?=$dev["prenomp"]?>  <?=$dev["nomp"]?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
             </div>
             <div>
+                <label class="inline">Responsable (chef équipe)</label>
                 <select name="chef" >
-                    <?php  $chef_equipe = $db->query("SELECT * from user");
+                    <?php  $chef_equipe = $db->query("SELECT * from user order by nom");
                     $chef_equipe = $chef_equipe->fetchAll();
                     foreach($chef_equipe as $user){
                     ?>
@@ -519,7 +531,13 @@ if (isset($_GET['personnel'])){
             </div>
             <div>
                 <select name="fonction" id="fonction">
-                <option value="">Choississez une fonction</option>
+                <?php 
+                $data_fonction2 = $db->query("SELECT * from fonction");
+                $data_fonction2 = $data_fonction2->fetchAll();
+                foreach($data_fonction2 as $fonction){
+                ?>
+                    <option value="<?=$fonction['id_fonction']?>"><?=$fonction['nom']?></option>
+                <?php } ?>
                 </select>
             </div>
             <div>
@@ -584,12 +602,16 @@ if (isset($_POST["add_module"])){
 
 //equipe
 if (isset($_POST["add_equipe"])){
-
+    if ((isset($_POST['nom']) & !empty($_POST['nom'])) & (isset($_POST['dev']) & !empty($_POST['dev'])) & (isset($_POST['chef']) & !empty($_POST['chef']))){
+        var_dump($_POST['dev']);
+    }
 }
 
 //user
 if (isset($_POST["add_user"])){
+    if ((isset($_POST['nom_personnel']) & !empty($_POST['nom_personnel'])) & (isset($_POST['prenom_personnel']) & !empty($_POST['prenom_personnel'])) & (isset($_POST['email_personnel']) & !empty($_POST['email_personnel'])) & (isset($_POST['fonction']) & !empty($_POST['fonction'])) & (isset($_POST['admin']) & !empty($_POST['admin']))){
 
+    }
 }
 
 
