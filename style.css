@@ -118,3 +118,33 @@ text-align: center;
     display: flex;
     flex-direction: column;
 }
+
+.item_admin_add{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.inline{
+    display: inline-block;
+    width:50%;
+}
+
+
+
+.item_admin_add div {
+    margin: 10px;
+}
+
+.center{
+    position: relative;
+    left: 25%
+}
+
+
+

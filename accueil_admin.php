@@ -72,27 +72,34 @@ if (isset($_GET['contrat'])){
         <?php
             if(isset($_POST['ajouter_contrat'])){
         ?>
-        <form method="post">
-            <div>
-                <label for="delai">délai :</label>
-                <input type="text" id="delai" name="delai">
-            </div>
-            <div>
-                <label for="date_signature">date de la signature:</label>
-                <input type="datetime" id="date_signature" name="date_signature">
-            </div>
-            <div>
-                <label for="cout">Coût :</label>
-                <input type="text" id="cout" name="cout">
-            </div>
-            <div>
-                <label for="entreprise">Entreprise :</label>
-                <select name="entreprise" id="entreprise">
-                    <option value="">Choississez une entreprise</option>
-                </select>
-            </div>
-        </form>
-        <input type="submit">
+        <div class="center">
+            <form method="post" class="item_admin_add">
+                <div>
+                    <label class="inline" for="delai">Délai :</label>
+                    <input class="float_right" type="text" id="delai" name="delai">
+                </div>
+                <div>
+                    <label  class="inline" for="date_signature">Date de la signature:</label>
+                    <input  class="float_right"  type="datetime" id="date_signature" name="date_signature">
+                </div>
+                <div>
+                    <label class="inline" for="cout">Coût :</label>
+                    <input  class="float_right" type="text" id="cout" name="cout">
+                </div>
+                <div>
+                    <label class="inline" for="entreprise">Entreprise :</label>
+                    <select class="float_right" name="entreprise" id="entreprise">
+                        <?php 
+                        $data_entreprise = $db->query("SELECT * from entreprise");
+                        $data_entreprise = $data_entreprise-> fetchAll(); 
+                        foreach($data_entreprise as $entreprise){ ?>
+                            <option value="<?=$entreprise["id_entreprise"]?>"><?=$entreprise["nom"]?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <input type="submit" value="add_contratt" name="add_contrat">
+            </form>
+        </div>
                 <?php
             }
         ?>
@@ -130,21 +137,23 @@ if (isset($_GET['entreprise'])){
             <?php
                 if(isset($_POST['ajouter_contrat'])){
             ?>
-            <form method="post">
+            <div class="center">
+            <form method="post" class="item_admin_add">
                 <div>
-                    <label for="nom">Nom de l'entreprise:</label>
+                    <label class="inline" for="nom">Nom de l'entreprise:</label>
                     <input type="text" id="nom" name="nom">
                 </div>
                 <div>
-                    <label for="coordonnees">Email de l'entreprise:</label>
+                    <label class="inline" for="coordonnees">Email de l'entreprise:</label>
                     <input type="email" id="coordonnees" name="coordonnees">
                 </div>
                 <div>
-                    <label for="contact">Email du contact de l'entreprise:</label>
+                    <label class="inline" for="contact">Email du contact de l'entreprise:</label>
                     <input type="email" id="contact" name="contact">
                 </div>
-                <input type="submit" name="ajouter_entreprise" value="Ajouter">
+                <input type="submit" name="add_entreprise" value="Ajouter_entreprise">
             </form>
+            </div>
         </div>
         <?php
         } if (isset($_POST["ajouter_entreprise"])){
@@ -187,7 +196,7 @@ if (isset($_GET['projet'])){
                         <td><?=$projet["budget"]?></td>
                         <td><?=$projet["cahier_des_charges"]?></td>
                         <td><?=$projet["id_contrat"]?></td>
-                        <td><?=$nom_contrat[0]?></td>
+                        <td><?=$nom_contrat[0]['nom']?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
 
@@ -200,20 +209,30 @@ if (isset($_GET['projet'])){
         </form>
         <?php
             if(isset($_POST['ajouter_contrat'])){
+                $data_contrat2 = $db->query("SELECT * from contrat");
+                $data_contrat2 = $data_contrat2->fetchAll();
         ?>
-        <form action="" method="post">
+        <div class="center">
+        <form class="item_admin_add" method="post">
             <div>
-                <label for="contrat">contrat</label>
+                <label class="inline" for="contrat">Contrat</label>
                 <select name="contrat" id="contrat">
-                    <option value="">Choississez un contrat</option>
+                    <?php foreach($data_contrat2 as $contrat){ ?>
+                        <option value="<?=$contrat['id_contrat']?>"><?=$contrat['nom']?></option>
+                    <?php } ?>
                 </select>
             </div>
-            <input type="submit" value="Selectionner">
+            <div>
+                <label class="inline" for="text">Budget</label>
+                <input type="text" name="budget">
+            </div>
             <div>
                 <textarea name="cahier_des_charges" placeholder="cahier des charges" id="cahier_des_charges" cols="30" rows="10"></textarea>
             </div>
+            <input type="submit" name="add_projet" value="ajouter_projet">
         </form>
-        <input type="submit">
+        </div>
+        
         <?php
             }
         ?>
@@ -248,13 +267,16 @@ if (isset($_GET['competence'])){
         <?php
             if(isset($_POST['ajouter_contrat'])){
         ?>
-        <form action="" method="post">
+        <div class="center">
+        <form class="item_admin_add" method="post">
             <div>
-                <label for="competence">Competence</label>
-                <input type="competence" id="competence" name="competence">
+                <label class="inline" for="competence">Competence</label>
+                <input type="competence" id="competence" name="nom">
             </div>
+            <input type="submit" name="add_competence" value="ajouter_competence">
         </form>
-        <input type="submit">
+        </div>
+        
         <?php
             }
         ?>
@@ -288,13 +310,16 @@ if (isset($_GET['materiel'])){
         <?php
             if(isset($_POST['ajouter_contrat'])){
         ?>
-        <form action="" method="post">
-            <div>
-                <label for="materiel">Materiel</label>
-                <input type="materiel" id="materiel" name="materiel">
+        <div class="center">
+        <form class="item_admin_add" method="post">
+            <div class="center">
+                <label class="inline" for="materiel">Materiel</label>
+                <input type="materiel" id="materiel" name="nom">
             </div>
+            <input type="submit" value="Ajouter_materiel" name="add_materiel">
         </form>
-        <input type="submit">
+        </div>
+        
         <?php
             }
         ?>
@@ -334,9 +359,10 @@ if (isset($_GET['module'])){
         <?php
             if(isset($_POST['ajouter_contrat'])){
         ?>
-        <form action="" method="post">
+        <div class="center">
+        <form class="item_admin_add" method="post">
             <div>
-                <label for="nom">Nom du module</label>
+                <label class="inline" for="nom">Nom du module</label>
                 <input type="nom" id="nom" name="nom">
             </div>
             <div>
@@ -349,8 +375,10 @@ if (isset($_GET['module'])){
                     <option value="">Choississez un projet</option>
                 </select>
             </div>
+            <input type="submit" name="add_module" value="Ajouter_module">
         </form>
-        <input type="submit">
+        </div>
+        
         <?php
             }
         ?>
@@ -395,21 +423,30 @@ if (isset($_GET['equipe'])){
         <?php
             if(isset($_POST['ajouter_contrat'])){
         ?>
-        <form action="" method="post">
+        <div class="center">
+        <form class="item_admin_add" method="post">
             <div>
-                <label for="nom">Nom de l'équipe</label>
+                <label class="inline" for="nom">Nom de l'équipe</label>
                 <input type="nom" id="nom" name="nom">
             </div>
             <div>
-                <label for="dev">Développeur</label>
-                <input type="text">
+                <label class="inline" for="dev">Développeur</label>
+                <input type="text">   ///    mettre un selecteur multiple ! 
             </div>
             <div>
-                <label for="chef">Nom du chef de l'équipe</label>
-                <input type="text" id="chef" name="chef">
+                <select name="chef" >
+                    <?php  $chef_equipe = $db->query("SELECT * from user");
+                    $chef_equipe = $chef_equipe->fetchAll();
+                    foreach($chef_equipe as $user){
+                    ?>
+                    <option value="<?=$user["id"]?>"><?=$user["nom"]?> <?=$user["prenom"]?></option>
+                    <?php } ?>
+                </select>
             </div>
+            <input type="submit" value="Ajouter_equipe" name="add_equipe">
         </form>
-        <input type="submit">
+        </div>
+        
         <?php
             }
         ?>
@@ -438,13 +475,19 @@ if (isset($_GET['personnel'])){
                         $id_fonction = $personnel['fonction']; 
                         $data_fonction = $db->query("SELECT * from fonction where id_fonction = '$id_fonction'");
                         $data_fonction = $data_fonction -> fetchAll();
+                        $dateinsc = explode(" ", $personnel["date_inscription"]); 
+                        $dateinsc2 = explode("-", $dateinsc[0]);
+                        $show_dateinsc = "$dateinsc2[2]-$dateinsc2[1]-$dateinsc2[0]";
+                        $date_last = explode(" ", $personnel['date_derniere_connexion']);
+                        $date_last2 = explode("-", $date_last[0]);
+                        $show_datelast = "$date_last2[2]-$date_last2[1]-$date_last2[0]";
                     ?>
                     <tr>
                         <td><?=$personnel["nom"]?></td>
                         <td><?=$personnel["prenom"]?></td>
                         <td><?=$personnel["email"]?></td>
-                        <td><?=$personnel["date_inscription"]?></td>
-                        <td><?=$personnel["date_derniere_connexion"]?></td>
+                        <td><?=$show_dateinsc?> à <?= $dateinsc[1]?></td>
+                        <td><?=$show_datelast?> à <?= $date_last[1]?></td>
                         <td><?=$data_fonction[0]["nom"]?></td>
                         <td><?=$personnel["admin"]?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
@@ -460,17 +503,18 @@ if (isset($_GET['personnel'])){
         <?php
             if(isset($_POST['ajouter_contrat'])){
         ?>
-        <form action="">
+        <div class="center">
+        <form method="POST" class="item_admin_add">
             <div>
-                <label for="nom_personnel">Nom</label>
+                <label class="inline" for="nom_personnel">Nom</label>
                 <input type="text" id="nom_personnel" name="nom_personnel">
             </div>
             <div>
-                <label for="prenom_personnel">Prénom</label>
+                <label class="inline" for="prenom_personnel">Prénom</label>
                 <input type="text" id="prenom_personnel" name="prenom_personnel">
             </div>
             <div>
-                <label for="email_personnel">Email</label>
+                <label class="inline" for="email_personnel">Email</label>
                 <input type="text" id="email_personnel" name="email_personnel">
             </div>
             <div>
@@ -479,17 +523,77 @@ if (isset($_GET['personnel'])){
                 </select>
             </div>
             <div>
-                <label for="admin">Admin</label>
+                <label class="inline" for="admin">Admin</label>
                 <input type="checkbox" id="admin" name="admin">
             </div>
+            <input type="submit" value="Ajouter_user" name="add_user">
         </form>
-        <input type="submit">
+        </div>
+        
         <?php
             }
         ?>
 
 <?php
 }
+
+// ajouter dans la base de donnée : a faire (nom des boutons) : add_contrat ; add_entreprise ; add_projet ; add_competence ; 
+//  add_materiel ; add_module ; add_equipe ; add_user 
+
+// contrat 
+if (isset($_POST['add_contrat'])){
+    if ((isset($_POST["delai"]) & !empty($_POST["delai"])) &  (isset($_POST["date_signature"]) & !empty($_POST["date_signature"])) & (isset($_POST["cout"]) & !empty($_POST["cout"])) & (isset($_POST["entreprise"]) & !empty($_POST["entreprise"]))){
+
+    }
+}
+
+//entreprise
+if (isset($_POST["add_entreprise"])){
+    if ((isset($_POST["nom"]) & !empty($_POST["nom"])) & (isset($_POST["coordonnees"]) & !empty($_POST["coordonnees"])) & (isset($_POST["contact"]) & !empty($_POST["contact"]))){
+    
+    }
+}
+
+//projet
+if (isset($_POST["add_projet"])){
+    if ((isset($_POST["contrat"]) & !empty($_POST["contrat"])) & (isset($_POST["cahier_des_charges"]) & !empty($_POST["cahier_des_charges"])) & (isset($_POST['budget']) & !empty($_POST["budget"]))){
+    
+    }
+}
+
+//competence
+if (isset($_POST["add_competence"])){
+    if ((isset($_POST['nom']) & !empty($_POST['nom']))){
+
+    }
+}
+
+//materiel
+if (isset($_POST["add_materiel"])){
+    if((isset($_POST['nom']) & !empty($_POST['nom']))){
+
+    }
+}
+
+//module
+if (isset($_POST["add_module"])){
+    if ((isset($_POST['nom']) & !empty($_POST['nom'])) & (isset($_POST['equipe']) & !empty($_POST['equipe'])) & (isset($_POST['projet']) & !empty($_POST['projet']))){
+
+    }
+}
+
+//equipe
+if (isset($_POST["add_equipe"])){
+
+}
+
+//user
+if (isset($_POST["add_user"])){
+
+}
+
+
+
 }else{
 ?>
 
