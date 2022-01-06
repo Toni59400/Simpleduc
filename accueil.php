@@ -53,7 +53,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
         <div class="two_div_in_screen">
             <div>
