@@ -1,8 +1,8 @@
         <div class="header_index">
             <div class="info_right">
                 <div class="header_right">
-                    <a href="projets">Projets</a>
-                    <a href="test">Test</a>
+                    <a href="../client.php">Clients</a>
+                    <a href="../projet.php">Projet</a>
                     <a href="../unconnexion.php">Deconnexion</a>
                 </div>
             </div>

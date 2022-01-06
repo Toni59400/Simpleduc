@@ -1,6 +1,6 @@
 <?php
-include('config/config.php');
-include('config/dbconnection.php');
+    include('config/config.php');
+    include('config/dbconnection.php');
     include("./inc/layout.php");
     if (isset($_SESSION['admin']) && $_SESSION["admin"] == "oui"){
 ?>
@@ -97,7 +97,7 @@ if (isset($_GET['contrat'])){
                         <?php } ?>
                     </select>
                 </div>
-                <input type="submit" value="add_contratt" name="add_contrat">
+                <input type="submit" value="Ajouter un contrat" name="add_contrat">
             </form>
         </div>
                 <?php

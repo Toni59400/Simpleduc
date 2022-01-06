@@ -1,4 +1,6 @@
 <?php
+    include('config/config.php');
+    include('config/dbconnection.php');
     include("./inc/layout.php");
     if (!isset($_SESSION["valider"])){
 ?>
@@ -53,7 +55,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
         <div class="two_div_in_screen">
             <div>
