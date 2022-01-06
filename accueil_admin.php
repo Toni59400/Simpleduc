@@ -1,6 +1,6 @@
 <?php
-    include('config/config.php');
-    include('config/dbconnection.php');
+include('config/config.php');
+include('config/dbconnection.php');
     include("./inc/layout.php");
     if (isset($_SESSION['admin']) && $_SESSION["admin"] == "oui"){
 ?>
@@ -75,6 +75,10 @@ if (isset($_GET['contrat'])){
         <div class="center">
             <form method="post" class="item_admin_add">
                 <div>
+                    <label class="inline">Nom : </label>
+                    <input class="float_right" type="text" id="delai" name="nom">
+                </div>
+                <div>
                     <label class="inline" for="delai">Délai :</label>
                     <input class="float_right" type="text" id="delai" name="delai">
                 </div>
@@ -97,7 +101,7 @@ if (isset($_GET['contrat'])){
                         <?php } ?>
                     </select>
                 </div>
-                <input type="submit" value="Ajouter un contrat" name="add_contrat">
+                <input type="submit" value="add_contratt" name="add_contrat">
             </form>
         </div>
                 <?php
@@ -156,14 +160,13 @@ if (isset($_GET['entreprise'])){
             </div>
         </div>
         <?php
-        } if (isset($_POST["ajouter_entreprise"])){
+        } if (isset($_POST["add_entreprise"])){
             if (isset($_POST['nom']) && isset($_POST['coordonnees']) && isset($_POST['contact'])){
                 $nom = $_POST['nom'];
                 $coordonnes = $_POST['coordonnees'];
                 $contact = $_POST['contact'];
                 $sql = $db->prepare("INSERT into entreprise(coordonnees, contact, nom) values ('$coordonnes','$contact','$nom')");
                 $sql -> execute();
-                echo "ok" ; 
             }
         }
                 ?>
@@ -366,13 +369,27 @@ if (isset($_GET['module'])){
                 <input type="nom" id="nom" name="nom">
             </div>
             <div>
+            <label class="inline">Equipe</label>
                 <select name="equipe" id="equipe">
-                    <option value="">Choississez une équipe</option>
+                    <?php  
+                    $data_equipe = $db->query("SELECT * from equipe");
+                    $data_equipe = $data_equipe->fetchAll();
+                    foreach($data_equipe as $equipe){
+                    ?>
+                    <option value="<?=$equipe["id_equipe"]?>"><?=$equipe['nom']?></option>
+                    <?php } ?>
                 </select>
             </div>
             <div>
+                <label class="inline">Projet</label>
                 <select name="projet" id="projet">
-                    <option value="">Choississez un projet</option>
+                <?php  
+                    $data_projet = $db->query("SELECT * from projet");
+                    $data_projet = $data_projet->fetchAll();
+                    foreach($data_projet as $projet){
+                    ?>
+                    <option value="<?=$projet["id_projet"]?>"><?=$projet["id_projet"]?></option>
+                    <?php } ?>
                 </select>
             </div>
             <input type="submit" name="add_module" value="Ajouter_module">
@@ -558,23 +575,17 @@ if (isset($_GET['personnel'])){
 
 // contrat 
 if (isset($_POST['add_contrat'])){
-    if ((isset($_POST["delai"]) & !empty($_POST["delai"])) &  (isset($_POST["date_signature"]) & !empty($_POST["date_signature"])) & (isset($_POST["cout"]) & !empty($_POST["cout"])) & (isset($_POST["entreprise"]) & !empty($_POST["entreprise"]))){
+    if ((isset($_POST["nom"]) & !empty($_POST["nom"])) & (isset($_POST["delai"]) & !empty($_POST["delai"])) &  (isset($_POST["date_signature"]) & !empty($_POST["date_signature"])) & (isset($_POST["cout"]) & !empty($_POST["cout"])) & (isset($_POST["entreprise"]) & !empty($_POST["entreprise"]))){
+        $nom = $_POST['nom'];
         $delai = $_POST["delai"];
         $date_signature = $_POST['date_signature'];
         $cout = $_POST['cout'];
         $entreprise = $_POST["entreprise"];
-        
+        $sql = $db->prepare("INSERT into contrat (nom, delai, date_signature, cout, id_entreprise) values ('','','','','','')");
+        $sql = $sql->execute();
     }
 }
 
-//entreprise
-if (isset($_POST["add_entreprise"])){
-    if ((isset($_POST["nom"]) & !empty($_POST["nom"])) & (isset($_POST["coordonnees"]) & !empty($_POST["coordonnees"])) & (isset($_POST["contact"]) & !empty($_POST["contact"]))){
-        $nom = $_POST["nom"];
-        $coordonnes = $_POST["coordonnes"]; 
-        $contact = $_POST["contact"];
-    }
-}
 
 //projet
 if (isset($_POST["add_projet"])){
@@ -582,6 +593,7 @@ if (isset($_POST["add_projet"])){
         $contrat = $_POST["contrat"];
         $cahier_des_charges = $_POST["cahier_des_charges"];
         $budget = $_POST['budget'];
+        $sql = $db->prepare("INSERT into projet (")
     }
 }
 
@@ -612,7 +624,7 @@ if (isset($_POST["add_module"])){
 if (isset($_POST["add_equipe"])){
     if ((isset($_POST['nom']) & !empty($_POST['nom'])) & (isset($_POST['dev']) & !empty($_POST['dev'])) & (isset($_POST['chef']) & !empty($_POST['chef']))){
         foreach($_POST['dev'] as $id){
-            //  ajout dans bdd appartenir
+            // ajout dans bdd appartenir
         }
     $nom = $_POST["nom"];
     $chef = $_POST["chef"];
