@@ -29,7 +29,6 @@ class Mail {
     } else {
     echo 'Le message a bien été envoyé !';
     }
-   }
-
-   }
+    }
+}
 ?>

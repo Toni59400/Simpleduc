@@ -1,6 +1,6 @@
 <?php
     $config['server'] = 'localhost';
-    $config['login'] = 'root';
-    $config['password'] = '';
+    $config['login'] = 'login8016';
+    $config['password'] = 'edxWdNJOREfcqSj';
     $config['dbname'] = 'simpleduc'; 
 ?>

@@ -10,11 +10,11 @@ include('config/dbconnection.php');
         <div class="header_index">
             <div class="info_right">
                 <div class="header_right">
-                    <a href="../unconnexion.php">Deconnexion</a>
+                    <a href="unconnexion.php">Deconnexion</a>
                 </div>
             </div>
             <div>
-                <a href="../accueil_admin.php"><img class="logo" src="./logo.png" alt="Logo_Simpleduc"/></a>
+                <a href="accueil_admin.php"><img class="logo" src="./logo.png" alt="Logo_Simpleduc"/></a>
             </div>
         </div>
         <div>
@@ -59,7 +59,7 @@ if (isset($_GET['contrat'])){
                         <td><?= $contrat["date_signature"]?></td>
                         <td><?= $contrat["cout"]?></td>
                         <td><?=$nom_entreprise[0]['nom']?></td>
-                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                        <td><span data_sup="<?=$contrat['id_contrat']?>" class="sup_contrat">Supprimer</span></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -84,7 +84,7 @@ if (isset($_GET['contrat'])){
                 </div>
                 <div>
                     <label  class="inline" for="date_signature">Date de la signature:</label>
-                    <input  class="float_right"  type="datetime" id="date_signature" name="date_signature">
+                    <input  class="float_right"  type="date" id="date_signature" name="date_signature">
                 </div>
                 <div>
                     <label class="inline" for="cout">Coût :</label>
@@ -129,7 +129,7 @@ if (isset($_GET['entreprise'])){
                         <td><?=$entreprise["nom"]?></td>
                         <td><?=$entreprise["coordonnees"]?></td>
                         <td><?=$entreprise["contact"]?></td>
-                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                        <td><span data_sup="<?=$entreprise["id_entreprise"]?>" class="sup_entreprise">Supprimer</span></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -200,7 +200,7 @@ if (isset($_GET['projet'])){
                         <td><?=$projet["cahier_des_charges"]?></td>
                         <td><?=$projet["id_contrat"]?></td>
                         <td><?=$nom_contrat[0]['nom']?></td>
-                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                        <td><span data_sup ="<?=$projet['id_projet']?>" class="sup_projet">Supprimer</span></td>
                     </tr>
 
                     <?php } ?>
@@ -261,7 +261,7 @@ if (isset($_GET['competence'])){
                     <?php foreach($data_competence as $competence){ ?>
                     <tr>
                         <td><?=$competence["nom"]?></td>
-                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                        <td><span data_sup="<?=$competence["id_competence"]?>" class="sup_competence">Supprimer</span></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -305,7 +305,7 @@ if (isset($_GET['materiel'])){
                     <?php foreach($data_materiel as $materiel){ ?>
                     <tr>
                         <td><?=$materiel["nom"]?></td>
-                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                        <td><span data_sup = "<?=$materiel["id_materiel"]?>" class="sup_materiel">Supprimer</span></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -359,7 +359,7 @@ if (isset($_GET['module'])){
                         <td><?= $module["nom"]?></td>
                         <td><?= $data_equipe[0]["nom"]?></td>
                         <td><?= $data_projet[0]["id_projet"]?></td>
-                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                        <td><span data_sup="<?=$module['id_module']?>" class="sup_module">Supprimer</span></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -444,7 +444,7 @@ if (isset($_GET['equipe'])){
                             $dev_name= $dev_name->fetch(); 
                             echo $dev_name['nom'].' '.$dev_name['prenom'].' ; ';
                         }?></td>
-                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                        <td><span data_sup="<?=$equipe['id_equipe']?>" class="sup_equipe">Supprimer</span></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -533,7 +533,7 @@ if (isset($_GET['personnel'])){
                         <td><?=$show_datelast?> à <?= $date_last[1]?></td>
                         <td><?=$data_fonction[0]["nom"]?></td>
                         <td><?=$personnel["admin"]?></td>
-                        <td><a href="">Modifier</a><a href="">Supprimer</a></td>
+                        <td><span data_sup="<?=$personnel['id']?>" class="sup_personnel">Supprimer</span></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -590,8 +590,7 @@ if (isset($_GET['personnel'])){
 <?php
 }
 
-// ajouter dans la base de donnée : a faire (nom des boutons) : add_contrat ; add_entreprise ; add_projet ; add_competence ; 
-//  add_materiel ; add_module ; add_equipe ; add_user 
+// ajouter dans la base de donnée 
 
 // contrat 
 if (isset($_POST['add_contrat'])){
@@ -686,6 +685,9 @@ if (isset($_POST["add_user"])){
     }
 }
 
+if (isset($_GET["supp_equipe"])){
+
+}
 
 }else{
 ?>
@@ -693,7 +695,194 @@ if (isset($_POST["add_user"])){
 <h1>Vous n'etes pas administrateur.</h1>
 
 <?php 
+} ?>
+
+<script type="text/javascript">
+
+var class_equipe = document.getElementsByClassName("sup_equipe");
+var class_personnel = document.getElementsByClassName("sup_personnel");
+var class_module = document.getElementsByClassName("sup_module");
+var class_materiel = document.getElementsByClassName("sup_materiel");
+var class_competence = document.getElementsByClassName("sup_competence");
+var class_projet = document.getElementsByClassName("sup_projet");
+var class_entreprise = document.getElementsByClassName("sup_entreprise");
+var class_contrat = document.getElementsByClassName("sup_contrat");
+
+
+
+for(let equipe of class_equipe){
+    equipe.addEventListener('click', delete_confirm_equipe, false);
 }
+function delete_confirm_equipe(){
+    var id = this.getAttribute('data_sup');
+    var pop=confirm('Voulez-vous vraiment supprimer ?');
+    if(pop == true){
+        alert("Ca va être supprimé.")
+        window.location = "accueil_admin.php?supp_equipe="+id
+    } else {
+        alert("Non supprimé !")
+    }
+}
+
+
+
+for(let personnel of class_personnel){
+    personnel.addEventListener('click', delete_confirm_personnel, false);
+}
+function delete_confirm_personnel(){
+    var id = this.getAttribute('data_sup');
+    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    if(pop == true){
+        alert("Ca va être supprimé.")
+        window.location = "accueil_admin.php?supp_personnel="+id
+    } else {
+        alert("Non supprimé !")
+    }
+}
+
+
+
+for(let modules of class_module){
+    modules.addEventListener('click', delete_confirm_module, false);
+}
+function delete_confirm_module(){
+    var id = this.getAttribute('data_sup');
+    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    if(pop == true){
+        alert("Ca va être supprimé.")
+        window.location = "accueil_admin.php?supp_module="+id
+    } else {
+        alert("Non supprimé !")
+    }
+}
+
+
+
+for(let mat of class_materiel){
+    mat.addEventListener('click', delete_confirm_materiel, false);
+}
+function delete_confirm_materiel(){
+    var id = this.getAttribute('data_sup');
+    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    if(pop == true){
+        alert("Ca va être supprimé.")
+        window.location = "accueil_admin.php?supp_materiel="+id
+    } else {
+        alert("Non supprimé !")
+    }
+}
+
+
+
+for(let comp of class_competence){
+    comp.addEventListener('click', delete_confirm_competence, false);
+}
+function delete_confirm_competence(){
+    var id = this.getAttribute('data_sup');
+    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    if(pop == true){
+        alert("Ca va être supprimé.")
+        window.location = "accueil_admin.php?supp_competence="+id
+    } else {
+        alert("Non supprimé !")
+    }
+}
+
+
+
+for(let projet of class_projet){
+    projet.addEventListener('click', delete_confirm_projet, false);
+}
+function delete_confirm_projet(){
+    var id = this.getAttribute('data_sup');
+    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    if(pop == true){
+        alert("Ca va être supprimé.")
+        window.location = "accueil_admin.php?supp_projet="+id
+    } else {
+        alert("Non supprimé !")
+    }
+}
+
+
+
+for(let entreprise of class_entreprise){
+    entreprise.addEventListener('click', delete_confirm_entreprise, false);
+}
+function delete_confirm_entreprise(){
+    var id = this.getAttribute('data_sup');
+    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    if(pop == true){
+        alert("Ca va être supprimé.")
+        window.location = "accueil_admin.php?supp_entreprise="+id
+    } else {
+        alert("Non supprimé !")
+    }
+}
+
+
+
+for(let contrat of class_contrat){
+    contrat.addEventListener('click', delete_confirm_contrat, false);
+}
+function delete_confirm_contrat(){
+    var id = this.getAttribute('data_sup');
+    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    if(pop == true){
+        alert("Ca va être supprimé.")
+        window.location = "accueil_admin.php?supp_contrat="+id
+    } else {
+        alert("Non supprimé !")
+    }
+}
+
+</script>
+
+<?php
+
+if (isset($_GET['supp_equipe'])){
+    $id = $_GET["supp_equipe"];
+    $sql = $db->prepare("DELETE from equipe where id_equipe = '$id'");
+}
+
+if (isset($_GET['supp_personnel'])){
+    $id = $_GET["supp_personnel"];
+    $sql = $db->prepare("DELETE from personnel where id = '$id'");
+}
+
+if (isset($_GET['supp_module'])){
+    $id = $_GET["supp_module"];
+    $sql = $db->prepare("DELETE from module_ where id_module = '$id'");
+}
+
+if (isset($_GET['supp_materiel'])){
+    $id = $_GET["supp_materiel"];
+    $sql = $db->prepare("DELETE from materiel where id_materiel = '$id'");
+}
+
+if (isset($_GET['supp_competence'])){
+    $id = $_GET["supp_competence"];
+    $sql = $db->prepare("DELETE from competence where id_competence = '$id'");
+}
+
+if (isset($_GET['supp_projet'])){
+    $id = $_GET["supp_projet"];
+    $sql = $db->prepare("DELETE from projet where id_projet = '$id'");
+}
+
+if (isset($_GET['supp_entreprise'])){
+    $id = $_GET["supp_entreprise"];
+    $sql = $db->prepare("DELETE from entreprise where id_entreprise = '$id'");
+}
+
+if (isset($_GET['supp_contrat'])){
+    $id = $_GET["supp_contrat"];
+    $sql = $db->prepare("DELETE from contrat where id_contrat = '$id'");
+}
+
+
+
     include("./inc/layout_bottom.php");
 ?>
+
 
