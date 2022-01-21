@@ -157,7 +157,7 @@ if (isset($_GET["supp_comp"])){
 if (isset($_GET['add_comp'])){
     $id_compe = $_GET['add_comp'];
     $sql2 = $db->query("SELECT * from maitriser where id_personne = '$id_user'"); 
-    $sql2= $sql2->fetchAll(); 
+    $sql2= $sql2->fetchAll();  
     $bool_present = False ;
     foreach($sql2 as $data){
         if ($data["id_competence"] == $id_compe){
