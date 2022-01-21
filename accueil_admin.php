@@ -347,11 +347,18 @@ if (isset($_GET['module'])){
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($data_module as $module){ ?>
+                    <?php foreach($data_module as $module){ 
+                        $id_equipe = $module["equipe"];
+                        $data_equipe = $db -> query("SELECT * from equipe where id_equipe = '$id_equipe'");
+                        $data_equipe = $data_equipe->fetchAll();
+                        $id_projet = $module['projet']; 
+                        $data_projet = $db -> query("SELECT * from projet where id_projet = '$id_projet'");
+                        $data_projet = $data_projet->fetchAll();
+                        ?>
                     <tr>
                         <td><?= $module["nom"]?></td>
-                        <td><?= $module["equipe"]?></td>
-                        <td><?= $module["projet"]?></td>
+                        <td><?= $data_equipe[0]["nom"]?></td>
+                        <td><?= $data_projet[0]["id_projet"]?></td>
                         <td><a href="">Modifier</a><a href="">Supprimer</a></td>
                     </tr>
                     <?php } ?>
