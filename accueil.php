@@ -102,7 +102,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $comp_usr = $db->query("SELECT * FROM maitriser inner join user on maitriser.id_personne = user.id where user.id = '$id_user'");
+                            $comp_usr = $db->query("SELECT * FROM maitriser where id_personne = '$id_user'");
                             $comp_usr = $comp_usr->fetchAll(); 
                             foreach($comp_usr as $comp){
                                 $id_c  = $comp['id_competence'];

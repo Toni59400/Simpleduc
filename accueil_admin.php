@@ -843,46 +843,52 @@ function delete_confirm_contrat(){
 if (isset($_GET['supp_equipe'])){
     $id = $_GET["supp_equipe"];
     $sql = $db->prepare("DELETE from equipe where id_equipe = '$id'");
+    $sql->execute();
 }
 
 if (isset($_GET['supp_personnel'])){
     $id = $_GET["supp_personnel"];
-    $sql = $db->prepare("DELETE from personnel where id = '$id'");
+    $sql = $db->prepare("DELETE from user where id = '$id'");
+    $sql->execute();
 }
 
 if (isset($_GET['supp_module'])){
     $id = $_GET["supp_module"];
     $sql = $db->prepare("DELETE from module_ where id_module = '$id'");
+    $sql->execute();
 }
 
 if (isset($_GET['supp_materiel'])){
     $id = $_GET["supp_materiel"];
     $sql = $db->prepare("DELETE from materiel where id_materiel = '$id'");
+    $sql->execute();
 }
 
 if (isset($_GET['supp_competence'])){
     $id = $_GET["supp_competence"];
     $sql = $db->prepare("DELETE from competence where id_competence = '$id'");
+    $sql->execute();
 }
 
 if (isset($_GET['supp_projet'])){
     $id = $_GET["supp_projet"];
     $sql = $db->prepare("DELETE from projet where id_projet = '$id'");
+    $sql->execute();
 }
 
 if (isset($_GET['supp_entreprise'])){
     $id = $_GET["supp_entreprise"];
     $sql = $db->prepare("DELETE from entreprise where id_entreprise = '$id'");
+    $sql->execute();
 }
 
 if (isset($_GET['supp_contrat'])){
     $id = $_GET["supp_contrat"];
     $sql = $db->prepare("DELETE from contrat where id_contrat = '$id'");
+    $sql->execute();
 }
 
 
 
     include("./inc/layout_bottom.php");
 ?>
-
-

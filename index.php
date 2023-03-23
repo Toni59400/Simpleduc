@@ -33,9 +33,8 @@ include('./inc/layout.php');
             $pass = password_hash( $_POST['mdp'], PASSWORD_DEFAULT);
             $email2 = $_POST['email'];
             $code = uniqid();
-            var_dump($code);
             $valider = "false";
-            $sql = "INSERT into user(email, mdp, date_inscription, date_derniere_connexion, valider, codeVerif, nom, prenom, fonction) values('$email2', '$pass', NOW(), NOW(), '$valider','$code', Null, null, 1)";
+            $sql = "INSERT into user(email, mdp, date_inscription, date_derniere_connexion, valider, codeVerif, nom, prenom, fonction, admin) values('$email2', '$pass', NOW(), NOW(), '$valider','$code', Null, null, 1, 'false')";
             $req = $db->prepare($sql);
             $req->execute();
             $email = new Mail();
@@ -46,7 +45,7 @@ include('./inc/layout.php');
                         </head>
                         <body>
                             <p>Veuillez confirmez votre compte en cliquant sur ce lien. </p>
-                            <a href="http://localhost:8080/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici !</a>
+                            <a href="http://s4-8016.nuage-peda.fr/Simpleduc/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici !</a>
                     </html>
                     ';
             $email->envoyerMailer($email2, 'Verification Compte', $message, '');
