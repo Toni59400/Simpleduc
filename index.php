@@ -4,6 +4,7 @@ include("./config/dbconnection.php");
 require_once 'lib/vendor/autoload.php';
 require_once './classes/class_mail.php';
 include('./inc/layout.php');
+include('./function.php');
 
 
     $regex = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/";
@@ -128,6 +129,9 @@ include("./inc/layout_bottom.php");
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">@</span><div class="email_status"></div>
                 <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" name="email" id="inscrip_email">
+            </div>
+            <div class="invalid-feedback "  id="info_mail_exist" style="display:none;">
+                Un compte existe déjà à ce mail.
             </div>
 
             <div class="input-group mb-3">
