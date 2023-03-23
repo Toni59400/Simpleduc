@@ -45,7 +45,7 @@ include('./inc/layout.php');
                         </head>
                         <body>
                             <p>Veuillez confirmez votre compte en cliquant sur ce lien. </p>
-                            <a href="http://s4-8016.nuage-peda.fr/Simpleduc/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici !</a>
+                            <a href="http://s4-8031.nuage-peda.fr/Simpleduc/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici !</a>
                     </html>
                     ';
             $email->envoyerMailer($email2, 'Verification Compte', $message, '');
@@ -123,11 +123,11 @@ include("./inc/layout_bottom.php");
         <div class="flex_center">
             <h1>Inscription</h1>
                 <form method="post" class="inscription">
-                    <label for="mail">Login :</label>
-                    <input type="mail" name="email">
+                    <label for="mail">Login : <div class="email_status"></div> <p id="email_status"></p></label>
+                    <input type="mail" name="email" id="inscrip_email">
                     <label for="password">Mdp :</label>
-                    <input type="password" name="mdp">
-                    <input type="submit" name="inscription" value="inscription">
+                    <input type="password" name="mdp" id ="inscrip_mdp">
+                    <input type="submit" name="inscription" value="inscription" id="button_inscrip">
                 </form>
             <p>Deja inscrit ? <a href="index.php?connexion=1">Connectez-vous</a></p>
         </div>
@@ -137,6 +137,6 @@ include("./inc/layout_bottom.php");
 include("./inc/layout_bottom.php");
 }
 ?>
-
+    <script src="guillaume.js"></script>
     </body>
 </html>

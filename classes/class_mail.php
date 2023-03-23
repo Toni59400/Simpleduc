@@ -9,13 +9,13 @@ class Mail {
     $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP
     $mail->Host = 'smtp.office365.com'; // Spécifier le serveur SMTP
     $mail->SMTPAuth = true; // Activer authentication SMTP
-    $mail->Username = 'toni.pira@epsi.fr' ; // Votre adresse email d'envoi
-    $mail->Password = '622WQN'; // Le mot de passe de cette adresse email
+    $mail->Username = 'guillaume.marechal@epsi.fr' ; // Votre adresse email d'envoi
+    $mail->Password = 'MAR#@gui15'; // Le mot de passe de cette adresse email
     $mail->SMTPSecure = 'tls'; // Accepter SSL
     $mail->Port = 587;
-    $mail->setFrom('toni.pira@epsi.fr', 'Mailer'); // Personnaliser l'envoyeur
+    $mail->setFrom('guillaume.marechal@epsi.fr', 'Mailer'); // Personnaliser l'envoyeur
     $mail->addAddress($destinataire);
-    $mail->addReplyTo('toni.pira@epsi.fr', 'Information'); // L'adresse de réponse
+    $mail->addReplyTo('guillaume.marechal@epsi.fr', 'Information'); // L'adresse de réponse
     if(!empty($piecejointe)){
     $mail->addAttachment($piecejointe); // Ajouter un attachement
     }
