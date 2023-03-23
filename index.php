@@ -123,7 +123,7 @@ include("./inc/layout_bottom.php");
         <div class="flex_center">
             <h1>Inscription</h1>
                 <form method="post" class="inscription">
-                    <label for="mail">Login : <div class="email_status"></div> <p id="email_status"></p></label>
+                    <label for="mail">Login : <p id="email_status"></p></label>
                     <input type="mail" name="email" id="inscrip_email">
                     <label for="password">Mdp :</label>
                     <input type="password" name="mdp" id ="inscrip_mdp">

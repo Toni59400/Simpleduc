@@ -11,17 +11,26 @@ button_inscrip.addEventListener('click', function(){
     }
 })
 
-inscrip_email.addEventListener('input', function () {
+inscrip_email.addEventListener('input', function (){
     var email = inscrip_email.value;
     var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (regex.test(email)) {
-        email_status.innerHTML = "L'e-mail est valide";
-        email_status.classList.add('valid');
-        email_status.classList.remove('invalid');
+        inscrip_email.classList.add('valid');
+        inscrip_email.classList.remove('invalid');
     } else {
-        email_status.innerHTML = "L'e-mail est invalide";
-        email_status.classList.add('invalid');
-        email_status.classList.remove('valid');
+        inscrip_email.classList.add('invalid');
+        inscrip_email.classList.remove('valid');
     }
-    email_status.style.display = "block";
+});
+
+inscrip_mdp.addEventListener('input', function (){
+    var password = inscrip_mdp.value;
+    var regexpassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (regexpassword.test(password)) {
+        inscrip_mdp.classList.add('valid');
+        inscrip_mdp.classList.remove('invalid');
+    } else {
+        inscrip_mdp.classList.add('invalid');
+        inscrip_mdp.classList.remove('valid');
+    }
 });

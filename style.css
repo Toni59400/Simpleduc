@@ -146,20 +146,17 @@ text-align: center;
     left: 25%;
 }
 
-#email_status {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    margin-left: 5px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    font-size: 12px;
+
+#inscrip_email.valid {
+    background-color: green;
 }
-#email_status.valid {
-    color: green;
+#inscrip_email.invalid {
+    background-color: red;
 }
-#email_status.invalid {
-    color: red;
+
+#inscrip_mdp.valid {
+    background-color: green;
+}
+#inscrip_mdp.invalid {
+    background-color: red;
 }
