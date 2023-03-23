@@ -133,7 +133,30 @@ include("./inc/layout_bottom.php");
             <div class="invalid-feedback "  id="info_mail_exist" style="display:none;">
                 Un compte existe déjà à ce mail.
             </div>
-
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <label for="inputCity">Code Postal</label>
+                        <input type="text" class="form-control" id="codePostal" maxlength="5">
+                        </div>
+                        <div class="form-group col-md-6">
+                        <label for="inputState">Ville</label>
+                        <select id="villeSelect" class="form-control">
+                        </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                        <label for="inputRue">Rue</label>
+                        <input type="text" class="form-control" id="inputRue" placeholder="Recherchez la rue !">
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                        <label for="inputState">Votre rue :</label>
+                        <select id="data_result" class="form-control">
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="input-group mb-3">
                 <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Recipient's username" aria-describedby="basic-addon2" name="mdp" id ="inscrip_mdp">
             </div>
@@ -147,6 +170,7 @@ include("./inc/layout_bottom.php");
 include("./inc/layout_bottom.php");
 }
 ?>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="guillaume.js"></script>
     <script src="toni.js"></script>
     </body>
