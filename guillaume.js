@@ -15,11 +15,11 @@ inscrip_email.addEventListener('input', function (){
     var email = inscrip_email.value;
     var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (regex.test(email)) {
-        inscrip_email.classList.add('valid');
-        inscrip_email.classList.remove('invalid');
+        inscrip_email.classList.add('is-valid');
+        inscrip_email.classList.remove('is-invalid');
     } else {
-        inscrip_email.classList.add('invalid');
-        inscrip_email.classList.remove('valid');
+        inscrip_email.classList.add('is-invalid');
+        inscrip_email.classList.remove('is-valid');
     }
 });
 
@@ -27,10 +27,10 @@ inscrip_mdp.addEventListener('input', function (){
     var password = inscrip_mdp.value;
     var regexpassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (regexpassword.test(password)) {
-        inscrip_mdp.classList.add('valid');
-        inscrip_mdp.classList.remove('invalid');
+        inscrip_mdp.classList.add('is-valid');
+        inscrip_mdp.classList.remove('is-invalid');
     } else {
-        inscrip_mdp.classList.add('invalid');
-        inscrip_mdp.classList.remove('valid');
+        inscrip_mdp.classList.add('is-invalid');
+        inscrip_mdp.classList.remove('is-valid');
     }
 });
