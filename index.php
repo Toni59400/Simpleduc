@@ -2,7 +2,7 @@
 include("./config/config.php");
 include("./config/dbconnection.php");
 require_once 'lib/vendor/autoload.php';
-require_once './classes/class_mail.php';
+//require_once './classes/class_mail.php';
 include('./inc/layout.php');
 include('./function.php');
 
