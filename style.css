@@ -145,18 +145,3 @@ text-align: center;
     position: relative;
     left: 25%;
 }
-
-
-#inscrip_email.valid {
-    background-color: green;
-}
-#inscrip_email.invalid {
-    background-color: red;
-}
-
-#inscrip_mdp.valid {
-    background-color: green;
-}
-#inscrip_mdp.invalid {
-    background-color: red;
-}

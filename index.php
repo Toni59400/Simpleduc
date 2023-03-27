@@ -45,7 +45,7 @@ include('./inc/layout.php');
                         </head>
                         <body>
                             <p>Veuillez confirmez votre compte en cliquant sur ce lien. </p>
-                            <a href="http://s4-8016.nuage-peda.fr/Simpleduc/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici !</a>
+                            <a href="http://s4-8031.nuage-peda.fr/Simpleduc/verif.php?code='.$code.'&cli='.$email2.'">Cliquez ici !</a>
                     </html>
                     ';
             $email->envoyerMailer($email2, 'Verification Compte', $message, '');
@@ -102,18 +102,19 @@ if (isset($_GET['connexion'])){
             <h1>Connexion</h1>
             <form method="post" class="inscription">
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span><div class="email_status"></div>
-                <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" name="email_connexion">
+
+                <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" name="email_connexion" id="email_connexion">
             </div>
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Mot de passe" aria-label="Recipient's username" aria-describedby="basic-addon2" name="mdp_connexion">
+                <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Recipient's username" aria-describedby="basic-addon2" name="mdp_connexion" id="mdp_connexion">
             </div>
             <input type="submit" name="connexion" value="Connexion" id="button_inscrip">
         </form>
         <a href="pass_lost.php">Mot de passe oublié ?</a>
         <p>Vous n'etes pas inscrit ? <a href="index.php?incription=1">Inscrivez-vous</a></p>
     </div>
+    <script src="guillaumelogin.js"></script>
 
 <?php 
 include("./inc/layout_bottom.php");
@@ -126,7 +127,6 @@ include("./inc/layout_bottom.php");
             <h1>Inscription</h1>
             <form method="post" class="inscription">
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span><div class="email_status"></div>
                 <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" name="email" id="inscrip_email">
             </div>
 
@@ -137,13 +137,13 @@ include("./inc/layout_bottom.php");
         </form>
         <p>Deja inscrit ? <a href="index.php?connexion=1">Connectez-vous</a></p>
     </div>
+    <script src="guillaumeinscr.js"></script>
             
 
 <?php 
 include("./inc/layout_bottom.php");
 }
 ?>
-    <script src="guillaume.js"></script>
     <script src="toni.js"></script>
     </body>
 </html>

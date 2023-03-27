@@ -40,9 +40,9 @@ if (isset($_GET['contrat'])){
             <table>
                 <thead>
                     <tr>
-                        <th>Délai</th>
+                        <th>Délai (en jour)</th>
                         <th>Date de signature</th>
-                        <th>Coût</th>
+                        <th>Coût (en €)</th>
                         <th>Entreprise</th>
                         <th>Actions</th>
                     </tr>
@@ -79,16 +79,16 @@ if (isset($_GET['contrat'])){
                     <input class="float_right" type="text" id="delai" name="nom">
                 </div>
                 <div>
-                    <label class="inline" for="delai">Délai :</label>
-                    <input class="float_right" type="text" id="delai" name="delai">
+                    <label class="inline" for="delai">Délai (en jour) :</label>
+                    <input class="float_right" type="number" id="delai" name="delai">
                 </div>
                 <div>
-                    <label  class="inline" for="date_signature">Date de la signature:</label>
-                    <input  class="float_right"  type="date" id="date_signature" name="date_signature">
+                    <label  class="inline" for="date_signature">Date de la signature :</label>
+                    <input  class="float_right"  type="datetime-local" id="date_signature" name="date_signature">
                 </div>
                 <div>
-                    <label class="inline" for="cout">Coût :</label>
-                    <input  class="float_right" type="text" id="cout" name="cout">
+                    <label class="inline" for="cout">Coût (en €) :</label>
+                    <input  class="float_right" type="number" id="cout" name="cout">
                 </div>
                 <div>
                     <label class="inline" for="entreprise">Entreprise :</label>
@@ -101,7 +101,7 @@ if (isset($_GET['contrat'])){
                         <?php } ?>
                     </select>
                 </div>
-                <input type="submit" value="add_contratt" name="add_contrat">
+                <input type="submit" value="Ajouter un contrat" name="add_contrat">
             </form>
         </div>
                 <?php
@@ -155,7 +155,7 @@ if (isset($_GET['entreprise'])){
                     <label class="inline" for="contact">Email du contact de l'entreprise:</label>
                     <input type="email" id="contact" name="contact">
                 </div>
-                <input type="submit" name="add_entreprise" value="Ajouter_entreprise">
+                <input type="submit" name="add_entreprise" value="Ajouter une entreprise">
             </form>
             </div>
         </div>
@@ -231,12 +231,12 @@ if (isset($_GET['projet'])){
             </div>
             <div>
                 <label class="inline" for="text">Budget</label>
-                <input type="text" name="budget">
+                <input type="number" name="budget">
             </div>
             <div>
                 <textarea name="cahier_des_charges" placeholder="cahier des charges" id="cahier_des_charges" cols="30" rows="10"></textarea>
             </div>
-            <input type="submit" name="add_projet" value="ajouter_projet">
+            <input type="submit" name="add_projet" value="Ajouter un projet">
         </form>
         </div>
         
@@ -280,7 +280,7 @@ if (isset($_GET['competence'])){
                 <label class="inline" for="competence">Competence</label>
                 <input type="competence" id="competence" name="nom">
             </div>
-            <input type="submit" name="add_competence" value="ajouter_competence">
+            <input type="submit" name="add_competence" value="Ajouter une compétence">
         </form>
         </div>
         
@@ -323,7 +323,7 @@ if (isset($_GET['materiel'])){
                 <label class="inline" for="materiel">Materiel</label>
                 <input type="materiel" id="materiel" name="nom">
             </div>
-            <input type="submit" value="Ajouter_materiel" name="add_materiel">
+            <input type="submit" value="Ajouter du matériel" name="add_materiel">
         </form>
         </div>
         
@@ -403,7 +403,7 @@ if (isset($_GET['module'])){
                     <?php } ?>
                 </select>
             </div>
-            <input type="submit" name="add_module" value="Ajouter_module">
+            <input type="submit" name="add_module" value="Ajouter un module">
         </form>
         </div>
         
@@ -440,7 +440,7 @@ if (isset($_GET['equipe'])){
                         <td><?=$chef_equipe[0]["nom"]?>  <?=$chef_equipe[0]["prenom"]?></td>
                         <td><?php foreach($data_dev as $developpeur){
                             $id = $developpeur['id_personne'];
-                            $dev_name = $db->query("SELECT * from user where id = '$id'"); 
+                            $dev_name = $db->query("SELECT * from user where id = $id"); 
                             $dev_name= $dev_name->fetch(); 
                             echo $dev_name['nom'].' '.$dev_name['prenom'].' ; ';
                         }?></td>
@@ -464,16 +464,18 @@ if (isset($_GET['equipe'])){
             </div>
             <div>
                 <label class="inline" for="dev">Développeur</label>
-                    <?php 
-                    $data_dev = $db->query("SELECT user.nom as nomp, user.prenom as prenomp, user.id as id from user INNER JOIN fonction on user.fonction = fonction.id_fonction where fonction.nom = 'Developpeur' order by nomp"); 
-                    $data_dev = $data_dev->fetchAll();
-                    foreach($data_dev as $dev){
-                        
-                    ?>
-                    <input type="checkbox" value="<?=$dev['id']?>" name="dev[]"><label><?=$dev['nomp']?> <?=$dev['prenomp']?></label>
-                    <?php
-                        }
-                    ?>
+                    <div>
+                        <?php 
+                        $data_dev = $db->query("SELECT user.nom as nomp, user.prenom as prenomp, user.id as id from user INNER JOIN fonction on user.fonction = fonction.id_fonction where fonction.nom = 'Developpeur' order by nomp"); 
+                        $data_dev = $data_dev->fetchAll();
+                        foreach($data_dev as $dev){
+                        ?>
+                        <input type="checkbox" value="<?=$dev['id']?>" name="dev[]"><label><?=$dev['nomp']?> <?=$dev['prenomp']?></label>
+                        <br>
+                        <?php
+                            }
+                        ?>
+                    </div>
             </div>
             <div>
                 <label class="inline">Responsable (chef équipe)</label>
@@ -486,7 +488,7 @@ if (isset($_GET['equipe'])){
                     <?php } ?>
                 </select>
             </div>
-            <input type="submit" value="Ajouter_equipe" name="add_equipe">
+            <input type="submit" value="Ajouter une équipe" name="add_equipe">
         </form>
         </div>
         
@@ -503,6 +505,7 @@ if (isset($_GET['personnel'])){
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Nom</th>
                         <th>Prenom</th>
                         <th>Email</th>
@@ -526,6 +529,7 @@ if (isset($_GET['personnel'])){
                         $show_datelast = "$date_last2[2]-$date_last2[1]-$date_last2[0]";
                     ?>
                     <tr>
+                        <td><input type="checkbox" id="<?=$personnel["id"]?>" class="checkbox_personnel" name="<?=$personnel["id"]?>"></td>
                         <td><?=$personnel["nom"]?></td>
                         <td><?=$personnel["prenom"]?></td>
                         <td><?=$personnel["email"]?></td>
@@ -536,6 +540,17 @@ if (isset($_GET['personnel'])){
                         <td><span data_sup="<?=$personnel['id']?>" class="sup_personnel">Supprimer</span></td>
                     </tr>
                     <?php } ?>
+                    <tr>
+                        <td><button>Supprimer</button></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -579,7 +594,7 @@ if (isset($_GET['personnel'])){
                 <label class="inline" for="admin">Admin</label>
                 <input type="checkbox" id="admin" name="admin">
             </div>
-            <input type="submit" value="Ajouter_user" name="add_user">
+            <input type="submit" value="Ajouter un utilisateur" name="add_user">
         </form>
         </div>
         
@@ -608,7 +623,7 @@ if (isset($_POST['add_contrat'])){
 
 //projet
 if (isset($_POST["add_projet"])){
-    if ((isset($_POST["delai"]) & !empty($_POST["delai"])) & (isset($_POST["contrat"]) & !empty($_POST["contrat"])) & (isset($_POST["cahier_des_charges"]) & !empty($_POST["cahier_des_charges"])) & (isset($_POST['budget']) & !empty($_POST["budget"]))){
+    if ((isset($_POST["delai"]) && !empty($_POST["delai"])) && (isset($_POST["contrat"]) && !empty($_POST["contrat"])) && (isset($_POST["cahier_des_charges"]) && !empty($_POST["cahier_des_charges"])) && (isset($_POST['budget']) && !empty($_POST["budget"]))){
         $delai = $_POST["delai"];
         $contrat = $_POST["contrat"];
         $cahier_des_charges = $_POST["cahier_des_charges"];
@@ -659,7 +674,7 @@ if (isset($_POST["add_equipe"])){
         $id_e= $id_equipe[0]['id_equipe'];
         foreach($_POST['dev'] as $id){
             $id = (int)$id;
-            $sql = $db->prepare("INSERT into appartenir (id_personne, id_equipe) values ('$id', '$id_e')");
+            $sql = $db->prepare("INSERT into appartenir (id_personne, id_equipe) values ($id, '$id_e')");
             $sql = $sql->execute();
         }
     }
@@ -683,10 +698,6 @@ if (isset($_POST["add_user"])){
         $sql = $sql->execute();
         echo "ok";
     }
-}
-
-if (isset($_GET["supp_equipe"])){
-
 }
 
 }else{
@@ -731,7 +742,7 @@ for(let personnel of class_personnel){
 }
 function delete_confirm_personnel(){
     var id = this.getAttribute('data_sup');
-    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    var pop=confirm('Voulez-vous vraiment supprimer ?');
     if(pop == true){
         alert("Ca va être supprimé.")
         window.location = "accueil_admin.php?supp_personnel="+id
@@ -747,7 +758,7 @@ for(let modules of class_module){
 }
 function delete_confirm_module(){
     var id = this.getAttribute('data_sup');
-    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    var pop=confirm('Voulez-vous vraiment supprimer ?');
     if(pop == true){
         alert("Ca va être supprimé.")
         window.location = "accueil_admin.php?supp_module="+id
@@ -763,7 +774,7 @@ for(let mat of class_materiel){
 }
 function delete_confirm_materiel(){
     var id = this.getAttribute('data_sup');
-    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    var pop=confirm('Voulez-vous vraiment supprimer ?');
     if(pop == true){
         alert("Ca va être supprimé.")
         window.location = "accueil_admin.php?supp_materiel="+id
@@ -779,7 +790,7 @@ for(let comp of class_competence){
 }
 function delete_confirm_competence(){
     var id = this.getAttribute('data_sup');
-    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    var pop=confirm('Voulez-vous vraiment supprimer ?');
     if(pop == true){
         alert("Ca va être supprimé.")
         window.location = "accueil_admin.php?supp_competence="+id
@@ -795,7 +806,7 @@ for(let projet of class_projet){
 }
 function delete_confirm_projet(){
     var id = this.getAttribute('data_sup');
-    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    var pop=confirm('Voulez-vous vraiment supprimer ?');
     if(pop == true){
         alert("Ca va être supprimé.")
         window.location = "accueil_admin.php?supp_projet="+id
@@ -811,7 +822,7 @@ for(let entreprise of class_entreprise){
 }
 function delete_confirm_entreprise(){
     var id = this.getAttribute('data_sup');
-    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    var pop=confirm('Voulez-vous vraiment supprimer ?');
     if(pop == true){
         alert("Ca va être supprimé.")
         window.location = "accueil_admin.php?supp_entreprise="+id
@@ -827,7 +838,7 @@ for(let contrat of class_contrat){
 }
 function delete_confirm_contrat(){
     var id = this.getAttribute('data_sup');
-    var pop=confirm('Voulez-vous vraiment supprimer ?' + id);
+    var pop=confirm('Voulez-vous vraiment supprimer ?');
     if(pop == true){
         alert("Ca va être supprimé.")
         window.location = "accueil_admin.php?supp_contrat="+id
@@ -837,58 +848,58 @@ function delete_confirm_contrat(){
 }
 
 </script>
-
+<script src="guillaumeadmin.js"></script>
 <?php
 
+
+
 if (isset($_GET['supp_equipe'])){
+    
     $id = $_GET["supp_equipe"];
-    $sql = $db->prepare("DELETE from equipe where id_equipe = '$id'");
+    $sql = $db->prepare("DELETE from equipe where id_equipe = $id");
     $sql->execute();
 }
 
 if (isset($_GET['supp_personnel'])){
     $id = $_GET["supp_personnel"];
-    $sql = $db->prepare("DELETE from user where id = '$id'");
+    $sql = $db->prepare("DELETE from user where id = $id");
     $sql->execute();
 }
 
 if (isset($_GET['supp_module'])){
     $id = $_GET["supp_module"];
-    $sql = $db->prepare("DELETE from module_ where id_module = '$id'");
+    $sql = $db->prepare("DELETE from module_ where id_module = $id");
     $sql->execute();
 }
 
 if (isset($_GET['supp_materiel'])){
     $id = $_GET["supp_materiel"];
-    $sql = $db->prepare("DELETE from materiel where id_materiel = '$id'");
+    $sql = $db->prepare("DELETE from materiel where id_materiel = $id");
     $sql->execute();
 }
 
 if (isset($_GET['supp_competence'])){
     $id = $_GET["supp_competence"];
-    $sql = $db->prepare("DELETE from competence where id_competence = '$id'");
+    $sql = $db->prepare("DELETE from competence where id_competence = $id");
     $sql->execute();
 }
 
 if (isset($_GET['supp_projet'])){
     $id = $_GET["supp_projet"];
-    $sql = $db->prepare("DELETE from projet where id_projet = '$id'");
+    $sql = $db->prepare("DELETE from projet where id_projet = $id");
     $sql->execute();
 }
 
 if (isset($_GET['supp_entreprise'])){
     $id = $_GET["supp_entreprise"];
-    $sql = $db->prepare("DELETE from entreprise where id_entreprise = '$id'");
+    $sql = $db->prepare("DELETE from entreprise where id_entreprise = $id");
     $sql->execute();
 }
 
 if (isset($_GET['supp_contrat'])){
     $id = $_GET["supp_contrat"];
-    $sql = $db->prepare("DELETE from contrat where id_contrat = '$id'");
+    $sql = $db->prepare("DELETE from contrat where id_contrat = $id");
     $sql->execute();
 }
-
-
-
     include("./inc/layout_bottom.php");
 ?>
